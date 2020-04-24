@@ -1,0 +1,24 @@
+extends layout.pug
+
+block content
+  div(class="sign-up-container")
+    div(class="errors-container")
+    h1 Sign Up for VideoEats
+    form(class="sign-up-form")
+      .form-group
+        input(type='text' name='firstName' placeholder="First Name" class="form-control")
+      .form-group
+        input(type='text' name='lastName' placeholder="Last Name" class="form-control")
+      .form-group
+        input(type='text' name='userName' placeholder="Username" class="form-control")
+      .form-group
+        input(type='email', name="email", placeholder='Enter email' class="form-control")
+      .form-group
+        input(type='password', name="password", placeholder='Password' class="form-control")
+      div
+        button(type='submit' class="btn btn-primary") Sign Up
+        a(href="/" class="ml-2") Cancel
+      a(href='/log-in' class="mt-2") Already have an account? Log in here.
+    div(class="image-container")
+      img(src="/images/sign-up-image.jpg")
+  script(src="/js/sign-up.js")

@@ -1,0 +1,31 @@
+extends layout.pug
+
+block content
+    .form-container
+        .errors-container
+        h1 Write a Review for #{business.name}
+        form.create-review
+            //- Will come back to this as a stretch goal
+            //- .form-group
+            //-     input(type="text" name="businessName" id="businessName" placeholder="Business Name" class="form-control" required)
+            .form-group
+                div(class="stars" data-rating="1")
+                    span.star
+                    span.star
+                    span.star
+                    span.star
+                    span.star
+            .form-group
+                textarea(name="reviewText" rows="10" placeholder="Write your review here!" class="form-control")
+            .form-group
+                textarea(name="videoLink" class="form-control" placeholder="Embed a youtube source share URL: https://www.youtube.com/embed/ixgIQqr5008")
+            //- .form-group
+            //-     input(type="text" class="form-control" id="reviewTags" name="reviewTags" placeholder="Search for related tags")
+            //-     ul.tags-results
+            //-     .selected-tags
+            div
+                button(type="submit" class="btn btn-primary") Post Review
+                button(type="button" class="ml-2 btn" id="reivew-cancel-button") Cancel
+
+    script(src="/js/write-a-review.js")
+    //- script(src="/js/search-tags.js")

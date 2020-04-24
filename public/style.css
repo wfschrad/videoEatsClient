@@ -1,0 +1,185 @@
+.hidden {
+	display: none;
+}
+h1 {
+	color: purple;
+}
+.body-content {
+	padding: 40px;
+}
+
+.business-cards {
+	color: inherit;
+}
+
+.business-cards:hover {
+	text-decoration: none;
+}
+
+.card.stars-business:hover {
+	box-shadow: 10px 5px 10px gray;
+}
+
+/* Sign up form styles */
+.sign-up-container {
+	margin: 0 auto;
+	width: 800px;
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+}
+
+.sign-up-form {
+	grid-column: 1 / span 1;
+}
+
+.sign-up-container > h1 {
+	text-align: center;
+	padding: 10px;
+	grid-column: 1 / span 1;
+}
+
+.image-container {
+	grid-column: 2 / span 1;
+	width: 350px;
+	height: 350px;
+	border-radius: 50%;
+	overflow: hidden;
+	position: relative;
+	margin: 0 auto;
+}
+
+.image-container img {
+	width: auto;
+	height: 100%;
+}
+
+/* Log in form styles */
+.log-in-container {
+	margin: 0 auto;
+	width: 800px;
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+}
+
+.log-in-form {
+	grid-column: 1 / span 1;
+}
+
+.log-in-container > h1 {
+	text-align: center;
+	padding: 10px;
+	grid-column: 1 / span 1;
+}
+
+/* Write a review styles */
+.form-container {
+	margin: 0 auto;
+	width: 800px;
+	text-align: center;
+}
+.create-review {
+	width: 800px;
+}
+
+/* Styles for rating stars */
+.star {
+	color: red;
+	font-size: 2.0rem;
+	padding: 0 1rem;
+}
+.star::before {
+	content: '\2606'; /* star outline*/
+}
+/*styles for the selected start*/
+.star.rated::before {
+	content: '\2605'; /*filled star*/
+}
+
+.stars {
+	counter-reset: 0; /* resets the counter to be 0*/
+	font-size: 2.0rem;
+	font-weight: 900;
+}
+.star.rated {
+	counter-increment: 1; /*Increment the counter by 1*/
+}
+
+.business-star {
+	color: red;
+	font-size: 2.0rem;
+	padding: 0 1rem;
+}
+.business-star::before {
+	content: '\2606'; /* star outline*/
+}
+/*styles for the selected start*/
+.business-star.rated::before {
+	content: '\2605'; /*filled star*/
+}
+.stars-business {
+	counter-reset: 0; /* resets the counter to be 0*/
+	font-size: 2.0rem;
+	font-weight: 900;
+}
+.business-star.rated {
+	counter-increment: 1; /*Increment the counter by 1*/
+}
+
+/* Tags search input --- NOT USING AT THE MOMENT
+.autocomplete {
+	position: relative;
+	display: inline-block;
+}
+
+.autocomplete-items {
+	position: absolute;
+	border: 1px solid #d4d4d4;
+	border-bottom: none;
+	border-top: none;
+	z-index: 99;
+	top: 100%;
+	left: 0;
+	right: 0;
+}
+
+.autocomplete-items div {
+	padding: 10px;
+	cursor: pointer;
+	background-color: #fff;
+	border-bottom: 1px solid #d4d4dd;
+}
+
+.autocomplete-items div:hover {
+	background-color: #eee;
+}
+
+.tags-results {
+	list-style: none;
+	text-align: left;
+}
+.tag-item {
+	cursor: pointer;
+}
+.selected-tags ul {
+	list-style: none;
+	text-align: left;
+}
+.selected-tags ul li:before {
+	content: '✓';
+}
+.tag-control {
+	display: block;
+	width: 100%;
+	height: 100%;
+	padding: .375rem .375rem;
+	font-size: 1rem;
+	font-weight: 400;
+	line-height: 1.5;
+	color: #495057;
+	background-color: #fff;
+	background-clip: padding-box;
+	border: 1px solid #ced4da;
+	border-radius: .25rem;
+	transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out;
+}
+*/

@@ -1,0 +1,23 @@
+extends layout.pug
+
+block content
+    div(class="container")
+        //- Need some kind of photo wrapper logic
+        .photo-wrapper
+        .container-md
+            h1 #{business.name}
+            //- Create the ratings
+            div(class="stars-business")
+                span.business-star
+                span.business-star
+                span.business-star
+                span.business-star
+                span.business-star
+            div
+                p #{business.phoneNum}
+                p #{business.description}
+            .address
+                p #{business.address}
+            button.btn.btn-secondary(type="button" id="write-a-review-button") Write a Review
+        .review-section
+    script(src="/js/business.js")

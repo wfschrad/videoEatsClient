@@ -1,0 +1,19 @@
+extends layout.pug
+
+block content
+  div(class="log-in-container")
+    div(class="errors-container")
+    h1 Log In
+    form(class="log-in-form")
+      .form-group
+        input(type='email', name="email", placeholder='Enter email' class="form-control")
+      .form-group
+        input(type='password', name="password", placeholder='Password' class="form-control")
+      div
+        button(type='submit' class="btn btn-primary") Log In
+        a(href="/" class="ml-2") Cancel
+      a(href='/sign-up') Don't have an account? Sign up here.
+    div(class="image-container")
+      img(src="/images/sign-up-image.jpg")
+  script(src="/js/log-in.js")
+  //- TODO: Create a demo user login info
