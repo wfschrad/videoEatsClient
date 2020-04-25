@@ -1,6 +1,6 @@
 // Vanilla javascript to grab the sign up form from the pug template
 // TODO: change based on the name of the class/id from the pug
-const api = document.querySelector('link[rel="api]').href;
+import { handleErrors, api } from './utils.js';
 const signUpForm = document.querySelector('.sign-up-form');
 
 // set up the event listener for the submit button
@@ -38,31 +38,6 @@ signUpForm.addEventListener('submit', async (e) => {
 		// redirect back to home if sign up is succcessful
 		window.location.href = '/';
 	} catch (err) {
-		if (err.status >= 400 && err.status < 600) {
-			const errorJSON = await err.json();
-			const errorsContainer = document.querySelector('.errors-container');
-			let errorsHtml = [
-				`
-                    <div class="alert alert-danger">
-                        Something went wrong. Please try again.
-                    </div>
-                `
-			];
-
-			const { errors } = errorJSON;
-			console.log(errors);
-			if (errors && Array.isArray(errors)) {
-				errorsHtml = errors.map(
-					(message) => `
-                    <div class="alert alert-danger">
-                        ${message}
-                    </div>
-                    `
-				);
-			}
-			errorsContainer.innerHTML = errorsHtml.join('');
-		} else {
-			alert('Something went wrong. Please check your internet connection and try again!');
-		}
+		handleErrors(err);
 	}
 });

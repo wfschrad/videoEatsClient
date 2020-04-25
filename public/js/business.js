@@ -1,4 +1,4 @@
-const api = document.querySelector('link[rel="api]').href;
+import { handleErrors, api } from './utils.js';
 
 document.addEventListener('DOMContentLoaded', async () => {
 	// get the url and split to get the business id
@@ -11,7 +11,6 @@ document.addEventListener('DOMContentLoaded', async () => {
 	writeReview.addEventListener('click', () => {
 		location.href = url + '/write-a-review';
 	});
-
 	try {
 		// get a fetch request to the backend api for reviews
 		const res = await fetch(`${api}businesses/${id}/reviews`);
@@ -116,6 +115,6 @@ document.addEventListener('DOMContentLoaded', async () => {
 			document.querySelector('.stars').setAttribute('data-rating', rating);
 		});
 	} catch (err) {
-		console.error(err);
+		handleErrors(err);
 	}
 });

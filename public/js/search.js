@@ -1,3 +1,3 @@
-const api = document.querySelector('link[rel="api]').href;
+import api from './utils.js';
 
-document.addEventListener('DOMContentLoaded', (e) => { });
+document.addEventListener('DOMContentLoaded', (e) => {});
