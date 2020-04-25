@@ -1,4 +1,4 @@
-const api = document.querySelector('link[rel="api]').href;
+import { api } from './utils.js';
 
 document.addEventListener('DOMContentLoaded', async (e) => {
 	const searchTagsField = document.getElementById('reviewTags');

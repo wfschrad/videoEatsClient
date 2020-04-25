@@ -1,4 +1,4 @@
-const api = document.querySelector('link[rel="api]').href;
+import { handleErrors, api } from './utils.js';
 
 document.addEventListener('DOMContentLoaded', (e) => {
 	// NavBar Selectors
@@ -13,8 +13,7 @@ document.addEventListener('DOMContentLoaded', (e) => {
 	const searchField = document.querySelector('.searchField');
 	const collapseButton = document.querySelector('.navbar-collapse');
 
-	const url = window.location.href;
-	console.log(url);
+	// const url = window.location.href;
 
 	function generateCards(businesses) {
 		const businessCardsHTML = businesses.map((business) => {
@@ -78,7 +77,7 @@ document.addEventListener('DOMContentLoaded', (e) => {
 			generateCards(businesses);
 			findAverageRating(businesses);
 		} catch (err) {
-			console.error(err);
+			handleErrors(err);
 		}
 	}
 
