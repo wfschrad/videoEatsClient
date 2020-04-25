@@ -1,3 +1,5 @@
+const api = document.querySelector('link[rel="api]').href;
+
 (async () => {
     const userId = localStorage.getItem("VIDEO_EATS_CURRENT_USER_ID");
     const userToken = localStorage.getItem("VIDEO_EATS_ACCESS_TOKEN")
@@ -9,7 +11,7 @@
     if (userId) {
         try {
             //TO-DO: re-factor to ensure jwt is still valid for specified user
-            const res = await fetch(`http://localhost:8080/users/${userId}`, {
+            const res = await fetch(`${api}users/${userId}`, {
                 headers: {
                     'Content-Type': 'application/json',
                     'Authorization': `Bearer ${userToken}`

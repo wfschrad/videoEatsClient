@@ -1,3 +1,5 @@
+const api = document.querySelector('link[rel="api]').href;
+
 document.addEventListener('DOMContentLoaded', async () => {
 	const reviewForm = document.querySelector('.create-review');
 	let stars = document.querySelectorAll('.star');
@@ -82,7 +84,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 
 		// TODO: Create the event listener keyup for the business name search. this is a stretch goal.
 		try {
-			const res = await fetch(`http://localhost:8080/businesses/${id}/reviews`, {
+			const res = await fetch(`${api}businesses/${id}/reviews`, {
 				method: 'POST',
 				body: JSON.stringify(body),
 				headers: {

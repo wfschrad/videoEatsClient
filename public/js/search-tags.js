@@ -1,3 +1,5 @@
+const api = document.querySelector('link[rel="api]').href;
+
 document.addEventListener('DOMContentLoaded', async (e) => {
 	const searchTagsField = document.getElementById('reviewTags');
 	const tagResults = document.querySelector('.tags-results');
@@ -12,7 +14,7 @@ document.addEventListener('DOMContentLoaded', async (e) => {
 	}
 	try {
 		// grabs all the tags from the backend
-		const res = await fetch('http://localhost:8080/businesses/tags');
+		const res = await fetch(`${api}businesses/tags`);
 		const { tags } = await res.json();
 		console.log(tags);
 		searchTagsField.addEventListener('keyup', (e) => {
