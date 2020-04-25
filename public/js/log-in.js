@@ -1,3 +1,5 @@
+const api = document.querySelector('link[rel="api]').href;
+
 if (localStorage.getItem('VIDEO_EATS_ACCESS_TOKEN')) {
 	alert('You are already logged in!');
 	window.history.back();
@@ -16,7 +18,7 @@ logInForm.addEventListener('submit', async (e) => {
 	const body = { email, password };
 
 	try {
-		const res = await fetch('http://localhost:8080/users/token', {
+		const res = await fetch(`${api}users/token`, {
 			method: 'POST',
 			body: JSON.stringify(body),
 			headers: {

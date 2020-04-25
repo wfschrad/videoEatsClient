@@ -1,3 +1,5 @@
+const api = document.querySelector('link[rel="api]').href;
+
 document.addEventListener('DOMContentLoaded', (e) => {
 	// NavBar Selectors
 	const navbarSearchForm = document.querySelector('.navbar-search');
@@ -62,7 +64,7 @@ document.addEventListener('DOMContentLoaded', (e) => {
 
 	async function fetchBusinessSearch(body) {
 		try {
-			const res = await fetch('http://localhost:8080/businesses/search', {
+			const res = await fetch(`${api}businesses/search`, {
 				method: 'POST',
 				body: JSON.stringify(body),
 				headers: {

@@ -1,3 +1,5 @@
+const api = document.querySelector('link[rel="api]').href;
+
 document.addEventListener('DOMContentLoaded', async () => {
 	// get the url and split to get the business id
 	const url = location.href;
@@ -12,7 +14,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 
 	try {
 		// get a fetch request to the backend api for reviews
-		const res = await fetch(`http://localhost:8080/businesses/${id}/reviews`);
+		const res = await fetch(`${api}businesses/${id}/reviews`);
 
 		// destructure to get the reviews array of objects
 		const { reviews } = await res.json();

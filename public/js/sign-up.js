@@ -1,5 +1,6 @@
 // Vanilla javascript to grab the sign up form from the pug template
 // TODO: change based on the name of the class/id from the pug
+const api = document.querySelector('link[rel="api]').href;
 const signUpForm = document.querySelector('.sign-up-form');
 
 // set up the event listener for the submit button
@@ -19,7 +20,7 @@ signUpForm.addEventListener('submit', async (e) => {
 
 	const body = { firstName, lastName, email, password, userName: userName, revScore: 0, statusTypeId: 1 };
 	try {
-		const res = await fetch('http://localhost:8080/users', {
+		const res = await fetch(`${api}users`, {
 			method: 'POST',
 			body: JSON.stringify(body),
 			headers: {
