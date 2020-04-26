@@ -211,7 +211,9 @@ document.addEventListener('DOMContentLoaded', (e) => {
 		e.preventDefault();
 		//TODO: when implementing search functionality
 
+
 		const searchValue = document.getElementById('navbarSearch').value;
+		console.log("Form activataed!", searchValue)
 		sessionStorage.setItem('SEARCH_VALUE', searchValue);
 		const body = {
 			name: searchValue
