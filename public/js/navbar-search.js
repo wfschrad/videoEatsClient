@@ -27,7 +27,7 @@ window.initMap = (targets) => {
 	console.log("targets: ", targets)
 	if (targets) {
 		targets.forEach((target) => {
-			addMarker({ coords: { lat: parseFloat(target.lat), lng: parseFloat(target.lon) }, iconImage: purpleIconDot, content: `<h3>${target.name}</h3>` });
+			addMarker({ coords: { lat: parseFloat(target.lat), lng: parseFloat(target.lon) }, iconImage: purpleIconDot, content: `<h5>${target.name}</h5> <h6> - ${target.averageRating} Stars</h6>` });
 		});
 	}
 	// addMarker({
@@ -123,6 +123,7 @@ document.addEventListener('DOMContentLoaded', (e) => {
 				return a + b;
 			}, 0);
 			const averageRating = sumRating / ratingsArray.length;
+			business.averageRating = averageRating;
 			const businessStars = document.querySelectorAll(`.star-${business.id}`);
 			businessStars.forEach((star, index) => {
 				if (averageRating > index) {
