@@ -7,6 +7,7 @@
 
 //- center is currently san fran, can change to a variable later on 
 
+<<<<<<< HEAD
 doctype html
 <html>
   <head>
@@ -29,3 +30,35 @@ doctype html
     script(src=`https://maps.googleapis.com/maps/api/js?key=${mapAPI}&callback=initMap` async='' defer='')
   </body>
 </html>
+=======
+//- doctype html
+//- <html>
+//-   <head>
+//-     <title>Simple Map</title>
+//-     <meta name="viewport" content="initial-scale=1.0">
+//-     <meta charset="utf-8">
+//-     style.
+//-       #map {
+//-       height: 100%;
+//-       }
+//-       html, body {
+//-       height: 100%;
+//-       margin: 15px;
+//-       padding: 15px;
+//-       }
+//-   </head>
+//-   <body>
+//-     <div id="map"></div>
+//-     script(type="module" src='/js/initMap.js')
+//-     script(src=`https://maps.googleapis.com/maps/api/js?key=${mapAPI}&callback=initMap` async='' defer='')
+//-   </body>
+//- </html>
+
+extends layout.pug
+
+block content
+  h1 hello
+  div#map
+  script(type="module" src="/js/initMap.js")
+  script(src=`https://maps.googleapis.com/maps/api/js?key=${mapAPI}&callback=initMap` async='' defer='')
+>>>>>>> 4f69fc4e19b85af4326247fa3f95ca28d9ee2873
