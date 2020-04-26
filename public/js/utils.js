@@ -28,7 +28,7 @@ export const handleErrors = async (err) => {
 
 export const api = document.querySelector('link[rel="api"]').href;
 
-export const addMarkers = (targets) => {
+export const addMarkers = (map, targets) => {
 	//window.initMap = () => {
 	const sf = { lat: 37.773, lng: -122.431 };
 	const test2 = { lat: 37.777, lng: -122.418 };

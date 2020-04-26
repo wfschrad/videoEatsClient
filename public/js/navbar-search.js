@@ -1,9 +1,9 @@
 import { handleErrors, api, addMarkers } from './utils.js';
 window.initMap = (targets) => {
 	const sf = { lat: 37.773, lng: -122.431 };
-	const test2 = { lat: 37.777, lng: -122.418 };
-	const test3 = { lat: 37.779, lng: -122.421 };
-	const test4 = { lat: 37.772, lng: -122.414 };
+	// const test2 = { lat: 37.777, lng: -122.418 };
+	// const test3 = { lat: 37.779, lng: -122.421 };
+	// const test4 = { lat: 37.772, lng: -122.414 };
 
 	//icons
 	const blueFlagIcon = 'http://maps.google.com/mapfiles/ms/icons/flag.png';
@@ -19,15 +19,17 @@ window.initMap = (targets) => {
 		options);
 
 
-	const markers = [
-		// { coords: sf, iconImage: purpleIcon, content: '<h3>Resto Info' },
-		// { coords: test2, iconImage: purpleIconDot, content: '<h3>Resto Info' },
-		// { coords: test3, iconImage: blueFlagIcon, content: '<h3>Resto Info' },
-	];
-
-	markers.forEach((props) => {
-		addMarker(props);
-	});
+	// const markers = [
+	// 	{ coords: sf, iconImage: purpleIcon, content: '<h3>Resto Info' },
+	// { coords: test2, iconImage: purpleIconDot, content: '<h3>Resto Info' },
+	// { coords: test3, iconImage: blueFlagIcon, content: '<h3>Resto Info' },
+	//];
+	console.log("targets: ", targets)
+	if (targets) {
+		targets.forEach((target) => {
+			addMarker({ coords: { lat: parseFloat(target.lat), lng: parseFloat(target.lon) }, iconImage: purpleIconDot, content: `<h3>${target.name}</h3>` });
+		});
+	}
 	// addMarker({
 	// 	coords: sf,
 	// 	iconImage: 'http://maps.google.com/mapfiles/ms/icons/flag.png',
@@ -150,12 +152,15 @@ document.addEventListener('DOMContentLoaded', (e) => {
 			});
 
 			const { businesses } = await res.json();
+			const test3 = { lat: 37.779, lng: -122.421 };
 
 			// declare ratings array to store the ratings
 			generateCards(businesses);
 			findAverageRating(businesses);
 			//addMapMarkers(businesses);
-			window.initMap();
+			window.initMap(businesses);
+
+			//pin locations currently do not persist. Better to not persist search results to match functionality?
 		} catch (err) {
 			handleErrors(err);
 		}
