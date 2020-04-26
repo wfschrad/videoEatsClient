@@ -50,7 +50,10 @@ app.get('/businesses/:id/write-a-review', async (req, res) => {
 });
 
 app.get('/search', (req, res) => {
-	res.render('search', { title: 'Search' });
+	res.render('search', {
+		title: 'Search',
+		businesses: []
+	});
 });
 
 app.get('/map', (req, res) => {

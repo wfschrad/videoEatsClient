@@ -1,8 +1,20 @@
+// window.initMap = () => {
+// 	import makeMap from ('./utils');
+// 	makeMap();
+// }
+// console.log('make that map dog')
+//makeMap();
 window.initMap = () => {
 	const sf = { lat: 37.773, lng: -122.431 };
 	const test2 = { lat: 37.777, lng: -122.418 };
 	const test3 = { lat: 37.779, lng: -122.421 };
 	const test4 = { lat: 37.772, lng: -122.414 };
+
+	//icons
+	const blueFlagIcon = 'http://maps.google.com/mapfiles/ms/icons/flag.png';
+	const purpleIcon = 'http://maps.google.com/mapfiles/ms/icons/purple.png';
+	const purpleIconDot = 'http://maps.google.com/mapfiles/ms/icons/purple-dot.png';
+
 
 	const options = {
 		center: sf,
@@ -12,16 +24,15 @@ window.initMap = () => {
 		options);
 
 
-	const markers = [
-		{ coords: sf, iconImage: 'http://maps.google.com/mapfiles/ms/icons/flag.png', content: '<h3>Resto Info' },
-		{ coords: test2, iconImage: 'http://maps.google.com/mapfiles/ms/icons/flag.png', content: '<h3>Resto Info' },
-		{ coords: test3, iconImage: 'http://maps.google.com/mapfiles/ms/icons/flag.png', content: '<h3>Resto Info' },
-		{ coords: test4, iconImage: 'http://maps.google.com/mapfiles/ms/icons/flag.png', content: '<h3>Resto Info' }
-	];
+	// const markers = [
+	// 	{ coords: sf, iconImage: purpleIcon, content: '<h3>Resto Info' },
+	// 	{ coords: test2, iconImage: purpleIconDot, content: '<h3>Resto Info' },
+	// 	{ coords: test3, iconImage: blueFlagIcon, content: '<h3>Resto Info' },
+	// ];
 
-	markers.forEach((props) => {
-		addMarker(props);
-	});
+	// markers.forEach((props) => {
+	// 	addMarker(props);
+	// });
 	// addMarker({
 	//     coords: sf,
 	//     iconImage: 'http://maps.google.com/mapfiles/ms/icons/flag.png',
@@ -43,26 +54,26 @@ window.initMap = () => {
 	//     infoWindow.open(map, marker);
 	// })
 
-	function addMarker(props) {
-		const marker = new google.maps.Marker({
-			position: props.coords,
-			map: map,
-		});
+	// function addMarker(props) {
+	// 	const marker = new google.maps.Marker({
+	// 		position: props.coords,
+	// 		map: map,
+	// 	});
 
-		if (props.iconImage) {
-			marker.setIcon(props.iconImage);
-		}
-		//check content
-		if (props.content) {
-			const infoWindow = new google.maps.InfoWindow({
-				content: props.content
-			});
-			marker.addListener('mouseover', () => {
-				infoWindow.open(map, marker);
-			});
-			marker.addListener('mouseout', () => {
-				infoWindow.close(map, marker);
-			})
-		}
-	}
+	// 	if (props.iconImage) {
+	// 		marker.setIcon(props.iconImage);
+	// 	}
+	// 	//check content
+	// 	if (props.content) {
+	// 		const infoWindow = new google.maps.InfoWindow({
+	// 			content: props.content
+	// 		});
+	// 		marker.addListener('mouseover', () => {
+	// 			infoWindow.open(map, marker);
+	// 		});
+	// 		marker.addListener('mouseout', () => {
+	// 			infoWindow.close(map, marker);
+	// 		})
+	// 	}
+	// }
 }

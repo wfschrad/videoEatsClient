@@ -1,7 +1,9 @@
 extends layout.pug
 
 block content
-  //-includes google-map.pug
+  //include google-map.pug
   h1 Search Results
   .business-card-container
   script(type="module" src="/js/navbar-search.js")
+  script(src=`https://maps.googleapis.com/maps/api/js?key=${mapAPI}&callback=initMap` async='' defer='')
+
