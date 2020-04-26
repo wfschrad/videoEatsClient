@@ -118,11 +118,6 @@ document.addEventListener('DOMContentLoaded', (e) => {
         });
     }
 
-    //add map data for search results
-    function addMapMarkers(businesses) {
-        addMarkers();
-    }
-
     async function fetchBusinessSearch(body) {
         try {
             const res = await fetch(`${api}businesses/search`, {

@@ -6,6 +6,9 @@ document.addEventListener('DOMContentLoaded', async () => {
 	const urlSplit = url.split('/');
 	const id = urlSplit[urlSplit.length - 1];
 
+	//vote buttons
+	const voteButtons = document.querySelectorAll('.vote');
+
 	// Handling the click event for write a review
 	const writeReview = document.getElementById('write-a-review-button');
 	writeReview.addEventListener('click', () => {
@@ -119,4 +122,9 @@ document.addEventListener('DOMContentLoaded', async () => {
 	} catch (err) {
 		handleErrors(err);
 	}
+
+	//add listeners for vote buttons
+
+
+
 });
