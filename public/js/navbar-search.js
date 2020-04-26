@@ -96,7 +96,7 @@ document.addEventListener('DOMContentLoaded', (e) => {
 				<a class="business-cards" href="/businesses/${business.id}">
 					<div class="card mt-2 stars-business" id="business-${business.id}">
 						<div class="card-body">
-							<h3 class="card-text">${business.name}</h3>
+							<div class="card-text-name">${business.name}</div>
 							<div class="stars">
 								<span class="business-star star-${business.id}"></span>
 								<span class="business-star star-${business.id}"></span>
@@ -104,7 +104,7 @@ document.addEventListener('DOMContentLoaded', (e) => {
 								<span class="business-star star-${business.id}"></span>
 								<span class="business-star star-${business.id}"></span>
 							</div>
-							<div class="card-text">${business.phoneNum}</div>
+							<h3 class="card-text">${business.Tag.type}</h3>
 							<div class="card-text">${business.address}</div>
 						</div>
 					</div>
@@ -158,9 +158,11 @@ document.addEventListener('DOMContentLoaded', (e) => {
 			generateCards(businesses);
 			findAverageRating(businesses);
 			//addMapMarkers(businesses);
+			document.getElementById('map').classList.remove('map-default');
 			window.initMap(businesses);
 
 			//pin locations currently do not persist. Better to not persist search results to match functionality?
+			//dynamically adjust styling for map div height?
 		} catch (err) {
 			handleErrors(err);
 		}

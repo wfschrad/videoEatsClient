@@ -185,5 +185,15 @@ h1 {
 */
 
 #map {
-	height: 1000px;
+	height: 500px;
+}
+.map-default {
+	display:none;
+}
+.card-text-name {
+	font-weight: 700;
+}
+.card-text {
+	font-weight: 500;
+	font-size: 16px;
 }
