@@ -188,7 +188,7 @@ h1 {
 	height: 500px;
 }
 .map-default {
-	display:none;
+	display: none;
 }
 .card-text-name {
 	font-weight: 700;
@@ -207,4 +207,20 @@ h1 {
 	background-color: plum;
 	color: black;
 	font-weight: 700;
+}
+
+/*Search results page*/
+.search-page-container {
+	width: 1280px;
+	margin: 0 auto;
+}
+.search-container {
+	display: grid;
+	grid-template-columns: 2fr 1fr;
+}
+.map-style {
+	grid-column: 2 / span 1;
+}
+.business-card-container {
+	grid-column: 1 span 2;
 }
