@@ -39,6 +39,8 @@ document.addEventListener('DOMContentLoaded', async () => {
 		document.querySelector('.stars-business').setAttribute('data-rating', averageRating);
 
 		// render the reviews in cards
+
+		//add vote buttons to review cards
 		const reviewSection = document.querySelector('.review-section');
 
 		const reviewCardsHTML = reviews.map((review) => {
@@ -56,7 +58,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 						<div class="video-review">
 							<iframe width="560" height="315" src=${review.videoLink}></iframe>
 						</div>
-						<p class="card-text">${review.User.userName}</p>
+						<p <span class="card-text">${review.User.userName}</span> <button class="vote">Like</button> <button class="vote">Dislike</button></p>
 						<p class="card-text">${review.createdAt.slice(5, 10) + '-' + review.createdAt.slice(0, 4)}</p>
 					</div>
 				</div>
@@ -73,7 +75,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 							<span class="star"></span>
 						</div>
 						<p class="card-text review-text">${review.reviewText}</p>
-						<p class="card-text">${review.User.userName}</p>
+						<p <span class="card-text">${review.User.userName}</span> <button class="vote">Up-Vote</button> <button class="vote">Down-Vote</button></p>
 						<p class="card-text">${review.createdAt.slice(5, 10) + '-' + review.createdAt.slice(0, 4)}</p>
 					</div>
 				</div>`;
@@ -92,7 +94,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 						<div class="video-review">
 							<iframe width="560" height="315" src=${review.videoLink}></iframe>
 						</div>
-						<p class="card-text">${review.User.userName}</p>
+						<p <span class="card-text">${review.User.userName}</span> <button class="vote">Up-Vote</button> <button class="vote">Down-Vote</button></p>
 						<p class="card-text">${review.createdAt.slice(5, 10) + '-' + review.createdAt.slice(0, 4)}</p>
 					</div>
 				</div>`;
