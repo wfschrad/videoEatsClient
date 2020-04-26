@@ -29,7 +29,7 @@ app.get('/log-in', (req, res) => {
 	res.render('log-in', { title: 'Log In' });
 });
 
-app.get(`/businesses/:id`, async (req, res) => {
+app.get(`/businesses/:id(\\d+)`, async (req, res) => {
 	try {
 		const fetchBusiness = await fetch(`${api}businesses/${req.params.id}`);
 		const { business } = await fetchBusiness.json();
