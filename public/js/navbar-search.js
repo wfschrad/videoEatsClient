@@ -13,6 +13,16 @@ document.addEventListener('DOMContentLoaded', (e) => {
 	const searchField = document.querySelector('.searchField');
 	const collapseButton = document.querySelector('.navbar-collapse');
 
+	const businessCardContainer = document.querySelector('.business-card-container');
+
+	dropDown.addEventListener('click', () => {
+		document.querySelector('.dropdown-menu').classList.toggle('show');
+	});
+	collapseButton.addEventListener('click', () => {
+		// TODO: show collapsed elements when clicking button
+		collapseButton.classList.toggle('show');
+	});
+
 	dropDownMenu.addEventListener('click', (event) => {
 		// help me dry up this code please
 		console.log(event.target);
