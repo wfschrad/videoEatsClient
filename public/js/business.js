@@ -60,7 +60,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 						<div class="video-review">
 							<iframe width="560" height="315" src=${review.videoLink}></iframe>
 						</div>
-						<p <span class="card-text">${review.User.userName}</span> <button class="vote upVote">Like</button> <button class="vote downVote">Dislike</button></p>
+						<p <span class="card-text">${review.User.userName}</span> <button id="up-${review.id}" class="vote upVote">Like</button> <button id="down-${review.id}" class="vote downVote">Dislike</button></p>
 						<p class="card-text">${review.createdAt.slice(5, 10) + '-' + review.createdAt.slice(0, 4)}</p>
 					</div>
 				</div>
@@ -77,7 +77,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 							<span class="star"></span>
 						</div>
 						<p class="card-text review-text">${review.reviewText}</p>
-						<p <span class="card-text">${review.User.userName}</span> <button class="vote upVote">Like</button> <button class="vote downVote">Dislike</button></p>
+						<p <span class="card-text">${review.User.userName}</span> <button id="up-${review.id}" class="vote upVote">Like</button> <button id="down-${review.id}" class="vote downVote">Dislike</button></p>
 						<p class="card-text">${review.createdAt.slice(5, 10) + '-' + review.createdAt.slice(0, 4)}</p>
 					</div>
 				</div>`;
@@ -96,7 +96,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 						<div class="video-review">
 							<iframe width="560" height="315" src=${review.videoLink}></iframe>
 						</div>
-						<p <span class="card-text">${review.User.userName}</span> <button class="vote upVote">Like</button> <button class="vote downVote">Dislike</button></p>
+						<p <span class="card-text">${review.User.userName}</span> <button id="up-${review.id}" class="vote upVote">Like</button> <button id="down-${review.id}" class="vote downVote">Dislike</button></p>
 						<p class="card-text">${review.createdAt.slice(5, 10) + '-' + review.createdAt.slice(0, 4)}</p>
 					</div>
 				</div>`;
@@ -127,6 +127,69 @@ document.addEventListener('DOMContentLoaded', async () => {
 	const downVoteBtns = document.querySelectorAll('.downVote');
 	console.log('upVoteBtns', upVoteBtns);
 	console.log('downVoteBtns', downVoteBtns);
+
+	for (let btn of upVoteBtns) {
+		btn.addEventListener('click', async (ev) => {
+			console.log('target', ev.target);
+			console.log('targetId', ev.target.id)
+			btn.disabled = true;
+			btn.classList.add('clicked');
+			const toggleTargetId = `down-${ev.target.id.slice(3)}`;
+			console.log('TOGGLEtargetId', toggleTargetId)
+
+			const btnMirror = document.getElementById(toggleTargetId)
+			btnMirror.disabled = false;
+			btnMirror.classList.remove('clicked');
+			//create vote instance and save to db
+			try {
+				console.log('145')
+				const body = {
+					"user": { "id": 4 },
+					"vote": { "typeId": 1 }
+				}
+				const res = await fetch(`${api}businesses/reviews/${ev.target.id.slice(3)}/votes`, {
+					method: 'POST',
+					body: JSON.stringify(body),
+					headers: {
+						'Content-Type': 'application/json',
+						Authorization: `Bearer ${localStorage.getItem('VIDEO_EATS_ACCESS_TOKEN')}`
+					}
+				});
+				console.log('154')
+
+				if (!res.ok) {
+					throw res;
+				}
+				const data = await res.json();
+				console.log('data(155', data);
+
+				//window.location.href = `/businesses/${id}`;
+			} catch (err) {
+				if (err.status === 401) {
+					window.location.href = '/log-in';
+				} else {
+					console.log('NOPE')
+					console.log(err)
+					console.log(err.message)
+				}
+			}
+		});
+	}
+
+	for (let btn of downVoteBtns) {
+		btn.addEventListener('click', (ev) => {
+			console.log('target', ev.target);
+			console.log('targetId', ev.target.id)
+			btn.disabled = true;
+			btn.classList.add('clicked');
+			const toggleTargetId = `up-${ev.target.id.slice(5)}`;
+			console.log('TOGGLEtargetId', toggleTargetId)
+
+			const btnMirror = document.getElementById(toggleTargetId)
+			btnMirror.disabled = false;
+			btnMirror.classList.remove('clicked');
+		})
+	}
 
 
 });

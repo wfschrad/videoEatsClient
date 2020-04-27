@@ -1,0 +1,25 @@
+mixin validationErrorSummary(errors)
+    if errors
+        div
+            p The following errors occured
+            ul
+                each error in errors
+                    li= error
+
+mixin textField(labelText, fieldName, fieldValue, placeHolder)
+    div(class="form-group")
+        label(for="fieldName")= labelText
+        input(type="text" id=fieldName name=fieldName value=fieldValue class="form-control" required)
+
+mixin numberField(labelText, fieldName, fieldValue, placeHolder)
+    div(class="form-group")
+        label(for="fieldName")= labelText
+        input(type="number" id=fieldName name=fieldName value=fieldValue class="form-control" required)
+
+mixin textArea(labelText, fieldName, fieldValue, placeHolder)
+    div(class="form-group")
+        label(for="fieldName")= labelText
+        textarea(type="text" id=fieldName name=fieldName value=fieldValue class="form-control" required)
+
+mixin option(value, text)
+  option(value=value selected=(value === favoriteBeatle)) #{text}
