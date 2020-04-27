@@ -1,9 +1,10 @@
 extends layout.pug
 
 block content
+    .photo-wrapper.mt-2
+        each photo in photos
+            img.photo-item.ml-1(src=`${photo}`)
     div(class="container")
-        //- Need some kind of photo wrapper logic
-        .photo-wrapper
         .container-md
             h1 #{business.name}
             //- Create the ratings
@@ -21,3 +22,4 @@ block content
             button.btn.btn-secondary(type="button" id="write-a-review-button") Write a Review
         .review-section
     script(type="module" src="/js/business.js")
+    script(type="module" src="/js/navbar-search.js")

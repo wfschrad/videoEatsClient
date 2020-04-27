@@ -264,3 +264,15 @@ h1 {
 #category-tags {
 	width: 400px;
 }
+
+/* Business info page */
+.photo-wrapper {
+	display: flex;
+	justify-content: center;
+}
+
+img.photo-item {
+	display: inline-block;
+	max-width: 300px;
+	max-height: 250px;
+}

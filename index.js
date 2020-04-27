@@ -98,7 +98,11 @@ app.get(`/businesses/:id(\\d+)`, async (req, res) => {
 	try {
 		const fetchBusiness = await fetch(`${api}businesses/${req.params.id}`);
 		const { business } = await fetchBusiness.json();
-		res.render('business', { title: business.name, business });
+		res.render('business', {
+			title: business.name,
+			business,
+			photos: business.photoContent.split(',')
+		});
 	} catch (err) {
 		console.error(err);
 	}
