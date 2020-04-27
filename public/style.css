@@ -9,9 +9,43 @@ h1 {
 }
 
 .bg-img {
-	background-image: url('/images/patrick-tomasso.jpg');
+	/* background-image: url('/images/patrick-tomasso.jpg');
+	height: 500px; */
 	background-size: cover;
  	background-repeat: no-repeat;
+}
+
+html, body {
+	height: 100%;
+	margin: 0;
+}
+
+.parent {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	background-image: url('images/patrick-tomasso.jpg');
+	height: 100%;
+	background-size: cover;
+ 	background-repeat: no-repeat;
+}
+
+.child {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+}
+
+.cell {
+	margin: auto;
+}
+
+.grid {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
 }
 
 .business-cards {

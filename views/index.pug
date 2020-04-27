@@ -1,26 +1,24 @@
 extends layout.pug
 
 block content
-  //- div.searchBarBox(style="display: flex;justify-content: center;align-items: center;")
-  //-   div one
-  //-   div two
-  //-   div center
-  //-     h1 Hello 
-  //-     //- search bar from nav bar
-  //-   div four
-  //-   div five
-  div.bg-img
-  div.grid(style="display: flex;justify-content: center;align-items: center;flex-direction: column;")
-    div.cell
-    div.cell
-    div.cell
-    div.cell
-    div.cell(style="height: 50px;margin: auto;")
-      form.form-inline.navbar-search.my-2.my-lg-0
-        input.form-control.mr-sm-2.searchField(type='text' placeholder='Search' id="navbarSearch" style="width:400px;")
-        button.btn.btn-outline-success.my-2.my-sm-0#search-btn(type='submit') Search
-    div.cell
-    div.cell
-    div.cell
-    div.cell
+      
+  main.parent
+    form.form-inline.navbar-search.my-2.my-lg-0.child
+      input.form-control.mr-sm-2.searchField(type='text' placeholder='Search' id="navbarSearch" style="width:400px;")
+      button.btn.btn-outline-success.my-2.my-sm-0#search-btn(type='submit') Search
+  //-div.bg-img
+  //-img.bg-img(src='/images/patrick-tomasso.jpg')
+  //- div.grid
+  //-   div.cell
+  //-   div.cell
+  //-   div.cell
+  //-   div.cell
+  //-   div.cell
+  //-     form.form-inline.navbar-search.my-2.my-lg-0
+  //-       input.form-control.mr-sm-2.searchField(type='text' placeholder='Search' id="navbarSearch" style="width:400px;")
+  //-       button.btn.btn-outline-success.my-2.my-sm-0#search-btn(type='submit') Search
+  //-   div.cell
+  //-   div.cell
+  //-   div.cell 
+  //-   div.cell
   script(type="module" src="/js/index.js")
