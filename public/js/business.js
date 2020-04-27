@@ -7,7 +7,6 @@ document.addEventListener('DOMContentLoaded', async () => {
 	const id = urlSplit[urlSplit.length - 1];
 
 	//vote buttons
-	const voteButtons = document.querySelectorAll('.vote');
 
 	// Handling the click event for write a review
 	const writeReview = document.getElementById('write-a-review-button');
@@ -61,7 +60,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 						<div class="video-review">
 							<iframe width="560" height="315" src=${review.videoLink}></iframe>
 						</div>
-						<p <span class="card-text">${review.User.userName}</span> <button class="vote">Like</button> <button class="vote">Dislike</button></p>
+						<p <span class="card-text">${review.User.userName}</span> <button class="vote upVote">Like</button> <button class="vote downVote">Dislike</button></p>
 						<p class="card-text">${review.createdAt.slice(5, 10) + '-' + review.createdAt.slice(0, 4)}</p>
 					</div>
 				</div>
@@ -78,7 +77,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 							<span class="star"></span>
 						</div>
 						<p class="card-text review-text">${review.reviewText}</p>
-						<p <span class="card-text">${review.User.userName}</span> <button class="vote">Up-Vote</button> <button class="vote">Down-Vote</button></p>
+						<p <span class="card-text">${review.User.userName}</span> <button class="vote upVote">Like</button> <button class="vote downVote">Dislike</button></p>
 						<p class="card-text">${review.createdAt.slice(5, 10) + '-' + review.createdAt.slice(0, 4)}</p>
 					</div>
 				</div>`;
@@ -97,7 +96,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 						<div class="video-review">
 							<iframe width="560" height="315" src=${review.videoLink}></iframe>
 						</div>
-						<p <span class="card-text">${review.User.userName}</span> <button class="vote">Up-Vote</button> <button class="vote">Down-Vote</button></p>
+						<p <span class="card-text">${review.User.userName}</span> <button class="vote upVote">Like</button> <button class="vote downVote">Dislike</button></p>
 						<p class="card-text">${review.createdAt.slice(5, 10) + '-' + review.createdAt.slice(0, 4)}</p>
 					</div>
 				</div>`;
@@ -124,7 +123,10 @@ document.addEventListener('DOMContentLoaded', async () => {
 	}
 
 	//add listeners for vote buttons
-
+	const upVoteBtns = document.querySelectorAll('.upVote');
+	const downVoteBtns = document.querySelectorAll('.downVote');
+	console.log('upVoteBtns', upVoteBtns);
+	console.log('downVoteBtns', downVoteBtns);
 
 
 });
