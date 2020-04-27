@@ -222,7 +222,7 @@ h1 {
 }
 .search-container {
 	display: grid;
-	grid-template-columns: 2fr 1fr;
+	grid-template-columns: 1fr 1fr;
 }
 .map-style {
 	grid-column: 2 / span 1;

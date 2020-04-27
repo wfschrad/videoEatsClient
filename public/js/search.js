@@ -61,11 +61,10 @@ document.addEventListener('DOMContentLoaded', (e) => {
 	const dropDownTag = document.getElementById('item-tag');
 	const searchField = document.querySelector('.searchField');
 	const collapseButton = document.querySelector('.navbar-collapse');
-
-	// Business selectors
-	const businessCardContainer = document.querySelector('.business-card-container');
+	const categorySearch = document.getElementById('category-tags');
 
 	let sessionSearchValue = sessionStorage.getItem('SEARCH_VALUE');
+	let sessionTagValue = sessionStorage.getItem('SEARCH_TAG');
 	if (sessionSearchValue) {
 		document.getElementById('navbarSearch').value = sessionSearchValue;
 		const body = {
@@ -73,8 +72,19 @@ document.addEventListener('DOMContentLoaded', (e) => {
 		};
 		console.log('BODY (105', body);
 		fetchBusinessSearch(body);
-		//window.location.href = '/search';
+	} else {
+		searchField.classList.add('hidden');
+		categorySearch.classList.remove('hidden');
+		categorySearch.value = sessionTagValue;
+		const body = {
+			tagBasic: sessionTagValue
+		};
+		console.log('BODY (105', body);
+		fetchBusinessSearch(body);
 	}
+
+	// Business selectors
+	const businessCardContainer = document.querySelector('.business-card-container');
 
 	function generateCards(businesses) {
 		const businessCardsHTML = businesses.map((business) => {
@@ -134,6 +144,7 @@ document.addEventListener('DOMContentLoaded', (e) => {
 			});
 
 			const { businesses } = await res.json();
+			console.log(businesses);
 
 			// declare ratings array to store the ratings
 			generateCards(businesses);

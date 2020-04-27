@@ -13,6 +13,7 @@ document.addEventListener('DOMContentLoaded', async (e) => {
 	const searchField = document.querySelector('.searchField');
 	const collapseButton = document.querySelector('.navbar-collapse');
 	const categorySearch = document.getElementById('category-tags');
+	let tagValue;
 
 	dropDown.addEventListener('click', () => {
 		document.querySelector('.dropdown-menu').classList.toggle('show');
@@ -22,19 +23,33 @@ document.addEventListener('DOMContentLoaded', async (e) => {
 		collapseButton.classList.toggle('show');
 	});
 
-	dropDownMenu.addEventListener('click', (event) => {
+	dropDownMenu.addEventListener('click', async (event) => {
 		// help me dry up this code please
 		if (event.target === dropDownName) {
 			dropDownToggle.innerHTML = 'Search for: ' + dropDownName.innerHTML;
 			searchField.placeholder = '< ' + dropDownName.innerHTML + ' >';
+
+			// when the dropdown for name is selected, hide the category dropdown and display the text search
+
+			searchField.classList.remove('hidden');
+			categorySearch.classList.add('hidden');
+			sessionStorage.setItem('SEARCH_TAG', null);
 		} else if (event.target === dropDownLocation) {
 			dropDownToggle.innerHTML = 'Search for: ' + dropDownLocation.innerHTML;
 			searchField.placeholder = dropDownLocation.innerHTML;
 		} else if (event.target === dropDownTag) {
 			dropDownToggle.innerHTML = 'Search for: ' + dropDownTag.innerHTML;
-			// searchField.placeholder = dropDownTag.innerHTML;
+
+			// when the dropdown for tag is selected, hide the text search and display the category dropdown
 			searchField.classList.add('hidden');
 			categorySearch.classList.remove('hidden');
+			document.getElementById('navbarSearch').value = null;
+			sessionStorage.setItem('SEARCH_VALUE', null);
+
+			categorySearch.addEventListener('change', (event) => {
+				tagValue = event.target.value;
+				sessionStorage.setItem('SEARCH_TAG', tagValue);
+			});
 		}
 	});
 
@@ -44,7 +59,8 @@ document.addEventListener('DOMContentLoaded', async (e) => {
 		const { categories } = await res.json();
 		categories.forEach((category) => {
 			const createOption = document.createElement('option');
-			createOption.setAttribute('class', 'form-control');
+			createOption.setAttribute('class', 'category-item');
+			createOption.setAttribute('id', `category-${category.id}`);
 			createOption.innerHTML = category.type;
 			categorySearch.appendChild(createOption);
 		});
@@ -58,6 +74,7 @@ document.addEventListener('DOMContentLoaded', async (e) => {
 		e.preventDefault();
 		const searchValue = document.getElementById('navbarSearch').value;
 		sessionStorage.setItem('SEARCH_VALUE', searchValue);
+
 		window.location.href = '/search';
 	});
 });
