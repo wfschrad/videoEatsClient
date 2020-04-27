@@ -194,7 +194,7 @@ h1 {
 	height: 500px;
 }
 .map-default {
-	display:none;
+	display: none;
 }
 .card-text-name {
 	font-weight: 700;
@@ -202,4 +202,36 @@ h1 {
 .card-text {
 	font-weight: 500;
 	font-size: 16px;
+}
+.vote {
+	background-color: purple;
+	color: white;
+	border-radius: 20%;
+	width: 80px;
+}
+.vote:hover {
+	background-color: plum;
+	color: black;
+	font-weight: 700;
+}
+.clicked {
+	background-color: plum;
+	color: black;
+	font-weight: 700;
+}
+
+/*Search results page*/
+.search-page-container {
+	width: 1280px;
+	margin: 0 auto;
+}
+.search-container {
+	display: grid;
+	grid-template-columns: 2fr 1fr;
+}
+.map-style {
+	grid-column: 2 / span 1;
+}
+.business-card-container {
+	grid-column: 1 span 2;
 }
