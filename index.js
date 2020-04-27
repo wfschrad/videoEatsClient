@@ -1,8 +1,14 @@
 const express = require('express');
+const csrf = require('csurf');
+const cookieParser = require('cookie-parser');
 const path = require('path');
 const fetch = require('node-fetch');
 
 const { mapAPI, api, port } = require('./config');
+
+const csrfProtection = csrf({ cookie: true });
+const asyncHandler = (handler) => (req, res, next) => handler(req, res, next).catch(next);
+
 
 // Create the express app
 const app = express();
@@ -10,6 +16,8 @@ const app = express();
 // Set the pug view engine
 app.set('view engine', 'pug');
 app.use(express.static(path.join(__dirname, 'public')));
+app.use(cookieParser());
+app.use(express.urlencoded({ extended: false }));
 app.use((req, res, next) => {
 	res.locals.mapAPI = mapAPI;
 	res.locals.api = api;
@@ -28,6 +36,19 @@ app.get('/sign-up', (req, res) => {
 app.get('/log-in', (req, res) => {
 	res.render('log-in', { title: 'Log In' });
 });
+
+app.get('/businesses/new', csrfProtection, asyncHandler(async (req, res) => {
+	const data = await fetch(`${api}businesses/tags`);
+	const { categories } = await data.json();
+	let business = {};
+	res.render('new-business', {
+		title: 'Add Business',
+		categories,
+		business,
+		errors: [],
+		csrfToken: req.csrfToken()
+	})
+}));
 
 app.get(`/businesses/:id(\\d+)`, async (req, res) => {
 	try {

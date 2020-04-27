@@ -1,0 +1,19 @@
+extends layout.pug
+include utils.pug
+block content
+  div(class="sign-up-container")
+    div(class="errors-container")
+    h1 Register New Business
+    form(class="sign-up-form")
+      form(action='/new-person' method='post')
+        input(type='hidden' name='_csrf' value=csrfToken)
+        +textField('Business Name', 'businessName')
+        +textField('Address', 'address')
+        .form-group
+            label(for='bizCatForm') Business Category
+            select#bizCatForm.form-control(name='bizCatId' required)
+                each category in categories
+                    option(value=category.id)= category.type
+        div
+            button(type='submit' class="btn btn-primary") Add Business
+            a(href="/" class="ml-2") Cancel
