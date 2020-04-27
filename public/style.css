@@ -208,6 +208,11 @@ h1 {
 	color: black;
 	font-weight: 700;
 }
+.clicked {
+	background-color: plum;
+	color: black;
+	font-weight: 700;
+}
 
 /*Search results page*/
 .search-page-container {
