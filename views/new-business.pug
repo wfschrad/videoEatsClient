@@ -11,7 +11,7 @@ block content
         +textField('Address', 'address')
         .form-group
             label(for='bizCatForm') Business Category
-            select#bizCatForm.form-control(name='bizCatId' required)
+            select#bizCatForm.form-control(name='categoryId' required)
                 each category in categories
                     option(value=category.id)= category.type
         div

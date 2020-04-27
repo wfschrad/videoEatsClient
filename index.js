@@ -50,6 +50,29 @@ app.get('/businesses/new', csrfProtection, asyncHandler(async (req, res) => {
 	})
 }));
 
+app.post('/businesses/new', csrfProtection, asyncHandler(async (req, res) => {
+	const { businessName, address, categoryId } = req.body;
+	//get lat and lng
+	await fetch(`${api}businesses/`, {
+		method: 'POST',
+		body: JSON.stringify({
+			name: businessName,
+			address,
+			categoryId
+		}),
+		headers: {
+			'Content-Type': 'application/json',
+			Authorization: `Bearer ${localStorage.getItem('VIDEO_EATS_ACCESS_TOKEN')}`
+		}
+	});
+
+	if (!res.ok) {
+		throw res;
+	}
+
+	res.redirect('/');
+}));
+
 app.get(`/businesses/:id(\\d+)`, async (req, res) => {
 	try {
 		const fetchBusiness = await fetch(`${api}businesses/${req.params.id}`);
