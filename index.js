@@ -4,7 +4,7 @@ const cookieParser = require('cookie-parser');
 const path = require('path');
 const fetch = require('node-fetch');
 
-const { mapAPI, api, port } = require('./config');
+const { mapAPI, api, port, geoAPI } = require('./config');
 
 const csrfProtection = csrf({ cookie: true });
 const asyncHandler = (handler) => (req, res, next) => handler(req, res, next).catch(next);
@@ -20,6 +20,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use((req, res, next) => {
 	res.locals.mapAPI = mapAPI;
 	res.locals.api = api;
+	res.locals.geoAPI = geoAPI;
 	next();
 });
 
@@ -53,41 +54,18 @@ app.get(
 	})
 );
 
-app.post(
-	'/businesses/new',
-	csrfProtection,
-	asyncHandler(async (req, res) => {
-		const { businessName, address, categoryId } = req.body;
-		//get lat and lng
-		await fetch(`${api}businesses/`, {
-			method: 'POST',
-			body: JSON.stringify({
-				name: businessName,
-				address,
-				categoryId
-			}),
-			headers: {
-				'Content-Type': 'application/json',
-				Authorization: `Bearer ${localStorage.getItem('VIDEO_EATS_ACCESS_TOKEN')}`
-			}
-		});
-
-		if (!res.ok) {
-			throw res;
-		}
-
-		res.redirect('/');
-	})
-);
-
 app.get(`/businesses/:id(\\d+)`, async (req, res) => {
 	try {
 		const fetchBusiness = await fetch(`${api}businesses/${req.params.id}`);
 		const { business } = await fetchBusiness.json();
+		let splitPhotos;
+		if (business.photoContent) {
+			splitPhotos = business.photoContent.split(',');
+		}
 		res.render('business', {
 			title: business.name,
 			business,
-			photos: business.photoContent.split(',')
+			photos: splitPhotos
 		});
 	} catch (err) {
 		console.error(err);
