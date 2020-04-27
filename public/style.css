@@ -8,6 +8,12 @@ h1 {
 	padding: 40px;
 }
 
+.bg-img {
+	background-image: url('/images/patrick-tomasso.jpg');
+	background-size: cover;
+ 	background-repeat: no-repeat;
+}
+
 .business-cards {
 	color: inherit;
 }
