@@ -29,8 +29,7 @@ document.addEventListener('DOMContentLoaded', async (e) => {
 			dropDownToggle.innerHTML = 'Search for: ' + dropDownName.innerHTML;
 			searchField.placeholder = '< ' + dropDownName.innerHTML + ' >';
 
-			// when the dropdown for name is selected, hide the category dropdown and display the text search
-
+			// when the dropdown for name is selected, hide the category dropdown and display the text search and set the search tag key in session storage to null
 			searchField.classList.remove('hidden');
 			categorySearch.classList.add('hidden');
 			sessionStorage.setItem('SEARCH_TAG', null);
@@ -40,7 +39,7 @@ document.addEventListener('DOMContentLoaded', async (e) => {
 		} else if (event.target === dropDownTag) {
 			dropDownToggle.innerHTML = 'Search for: ' + dropDownTag.innerHTML;
 
-			// when the dropdown for tag is selected, hide the text search and display the category dropdown
+			// when the dropdown for tag is selected, hide the text search and display the category dropdown and set the search value to null
 			searchField.classList.add('hidden');
 			categorySearch.classList.remove('hidden');
 			document.getElementById('navbarSearch').value = null;
