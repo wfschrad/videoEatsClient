@@ -224,3 +224,25 @@ h1 {
 .business-card-container {
 	grid-column: 1 span 2;
 }
+
+/* Navbar styles */
+.navbar-container {
+	display: flex;
+	justify-content: space-between;
+}
+
+#nav-search {
+	display: inline-block;
+}
+
+#account-options {
+	display: inline-block;
+}
+
+#navbar-search-form {
+	display: inline-block;
+}
+
+.navbar-category-dropdown {
+	display: inline-block;
+}

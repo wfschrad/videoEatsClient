@@ -7,37 +7,33 @@ html
     link(rel="api" href=`${api}`)
     
   body
-    nav.navbar.navbar-expand-lg.navbar-light.bg-light
-      a.navbar-brand(href='/') Video Eats
-      button.navbar-toggler(type='button' data-toggle='collapse' data-target='#navbarSupportedContent' aria-controls='navbarSupportedContent' aria-expanded='false' aria-label='Toggle navigation')
-        span.navbar-toggler-icon
-      #navbarSupportedContent.collapse.navbar-collapse 
-        ul.navbar-nav.mr-auto
-          span(class='navbar-text px-4 navLoggedIn_Welcome hidden') 
-          
-          li.nav-item
-            a.nav-link(class='navLoggedOut' href='/log-in') Log in
-          li.nav-item
-            a.nav-link(class='navLoggedOut' href='/sign-up') Sign up
-          form(class='form-inline pr-4' action='/user/logout' method='post' style="padding-right:100px;")
-          //- I want to add style="padding-right:100px;" to the logout button but it doesn't work
-          button(id='logout_btn' class='btn btn-sm btn-warning navLoggedIn_Logout hidden' type='submit') Logout
-          li.nav-item.dropdown
+    nav.navbar.navbar-expand-lg.navbar-light.bg-light.navbar-container
+      #home
+        a.navbar-brand(href='/') Video Eats
+      #nav-search
+        .nav-item.dropdown.navbar-category-dropdown
             button#navbarDropdown.nav-link.dropdown-toggle(type='button' role='button' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false')
               | Search for:
             .dropdown-menu(aria-labelledby='navbarDropdown')
               a.dropdown-item#item-name(href='#') Restaurant name
-              //-a.dropdown-item#item-location(href='#') Location
+              //-a.dropdown-item#item-location(href='#') Locations
               a.dropdown-item#item-tag(href='#') Tag
               //-.dropdown-divider
-          //-li.nav-item
-            a.nav-link.disabled(href='#') Disabled
-        form.form-inline.navbar-search.my-2.my-lg-0
-          input.form-control.mr-sm-2.searchField(type='text' placeholder='Search' id="navbarSearch" style="width:400px;")
-          button.btn.btn-outline-success.my-2.my-sm-0#search-btn(type='submit') Search
-          //- TODO: alter search route to be something like /search/?= once we implement /search
-    .body-content
-      block content
-    script(type="module" src="/js/navbar-search.js")
-    script(type="module" src="/js/user-auth.js")
-    script(type="module" src="/js/log-out.js")
+        #navbar-search-form.ml-2
+          form.form-inline.navbar-search.my-2.my-lg-0
+            input.form-control.mr-sm-2.searchField(type='text' placeholder='Search' id="navbarSearch" style="width:400px;")
+            button.btn.btn-outline-success.my-2.my-sm-0#search-btn(type='submit') Search
+      #account-options
+        #navbarSupportedContent.collapse.navbar-collapse 
+          ul.navbar-nav.mr-auto
+            span(class='navbar-text px-4 navLoggedIn_Welcome hidden') 
+            li.nav-item
+              a.nav-link(class='navLoggedOut' href='/log-in') Log in
+            li.nav-item
+              a.nav-link(class='navLoggedOut' href='/sign-up') Sign up
+            form(class='form-inline pr-4' action='/user/logout' method='post' style="padding-right:100px;")
+            button(id='logout_btn' class='btn btn-sm btn-warning navLoggedIn_Logout hidden' type='submit') Logout
+    block content
+  script(type="module" src="/js/navbar-search.js")
+  script(type="module" src="/js/user-auth.js")
+  script(type="module" src="/js/log-out.js")

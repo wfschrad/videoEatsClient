@@ -13,7 +13,6 @@ document.addEventListener('DOMContentLoaded', (e) => {
 	const searchField = document.querySelector('.searchField');
 	const collapseButton = document.querySelector('.navbar-collapse');
 
-
 	dropDownMenu.addEventListener('click', (event) => {
 		// help me dry up this code please
 		console.log(event.target);
