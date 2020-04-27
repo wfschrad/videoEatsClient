@@ -62,6 +62,9 @@ document.addEventListener('DOMContentLoaded', (e) => {
 	const searchField = document.querySelector('.searchField');
 	const collapseButton = document.querySelector('.navbar-collapse');
 
+	// Business selectors
+	const businessCardContainer = document.querySelector('.business-card-container');
+
 	let sessionSearchValue = sessionStorage.getItem('SEARCH_VALUE');
 	if (sessionSearchValue) {
 		document.getElementById('navbarSearch').value = sessionSearchValue;
@@ -145,31 +148,6 @@ document.addEventListener('DOMContentLoaded', (e) => {
 			handleErrors(err);
 		}
 	}
-
-	// Business selectors
-	const businessCardContainer = document.querySelector('.business-card-container');
-
-	dropDown.addEventListener('click', () => {
-		document.querySelector('.dropdown-menu').classList.toggle('show');
-	});
-	collapseButton.addEventListener('click', () => {
-		// TODO: show collapsed elements when clicking button
-		collapseButton.classList.toggle('show');
-	});
-	dropDownMenu.addEventListener('click', (event) => {
-		// help me dry up this code please
-		console.log(event.target);
-		if (event.target === dropDownName) {
-			dropDownToggle.innerHTML = 'Search for: ' + dropDownName.innerHTML;
-			searchField.placeholder = '< ' + dropDownName.innerHTML + ' >';
-		} else if (event.target === dropDownLocation) {
-			dropDownToggle.innerHTML = 'Search for: ' + dropDownLocation.innerHTML;
-			searchField.placeholder = dropDownLocation.innerHTML;
-		} else if (event.target === dropDownTag) {
-			dropDownToggle.innerHTML = 'Search for: ' + dropDownTag.innerHTML;
-			searchField.placeholder = dropDownTag.innerHTML;
-		}
-	});
 
 	// set up the event listener for the submit button
 	navbarSearchForm.addEventListener('submit', async (e) => {

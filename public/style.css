@@ -1,5 +1,5 @@
 .hidden {
-	display: none;
+	display: none !important;
 }
 h1 {
 	color: purple;
@@ -251,4 +251,12 @@ h1 {
 
 .navbar-category-dropdown {
 	display: inline-block;
+}
+
+#navbarSearch {
+	width: 400px;
+}
+
+#category-tags {
+	width: 400px;
 }

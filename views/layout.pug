@@ -21,7 +21,8 @@ html
               //-.dropdown-divider
         #navbar-search-form.ml-2
           form.form-inline.navbar-search.my-2.my-lg-0
-            input.form-control.mr-sm-2.searchField(type='text' placeholder='Search' id="navbarSearch" style="width:400px;")
+            input.form-control.mr-sm-2.searchField(type='text' placeholder='Search' id="navbarSearch")
+            select.form-control.hidden.mr-sm-2#category-tags
             button.btn.btn-outline-success.my-2.my-sm-0#search-btn(type='submit') Search
       #account-options
         #navbarSupportedContent.collapse.navbar-collapse 
@@ -33,7 +34,6 @@ html
               a.nav-link(class='navLoggedOut' href='/sign-up') Sign up
             form(class='form-inline pr-4' action='/user/logout' method='post' style="padding-right:100px;")
             button(id='logout_btn' class='btn btn-sm btn-warning navLoggedIn_Logout hidden' type='submit') Logout
-      .block-content
     block content
     script(type="module" src="/js/navbar-search.js")
     script(type="module" src="/js/user-auth.js")

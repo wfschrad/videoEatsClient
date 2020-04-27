@@ -1,6 +1,6 @@
 import { handleErrors, api, addMarkers } from './utils.js';
 
-document.addEventListener('DOMContentLoaded', (e) => {
+document.addEventListener('DOMContentLoaded', async (e) => {
 	// NavBar Selectors
 	const navbarSearchForm = document.querySelector('.navbar-search');
 	const searchButton = document.getElementById('search-btn');
@@ -12,8 +12,7 @@ document.addEventListener('DOMContentLoaded', (e) => {
 	const dropDownTag = document.getElementById('item-tag');
 	const searchField = document.querySelector('.searchField');
 	const collapseButton = document.querySelector('.navbar-collapse');
-
-	const businessCardContainer = document.querySelector('.business-card-container');
+	const categorySearch = document.getElementById('category-tags');
 
 	dropDown.addEventListener('click', () => {
 		document.querySelector('.dropdown-menu').classList.toggle('show');
@@ -25,7 +24,6 @@ document.addEventListener('DOMContentLoaded', (e) => {
 
 	dropDownMenu.addEventListener('click', (event) => {
 		// help me dry up this code please
-		console.log(event.target);
 		if (event.target === dropDownName) {
 			dropDownToggle.innerHTML = 'Search for: ' + dropDownName.innerHTML;
 			searchField.placeholder = '< ' + dropDownName.innerHTML + ' >';
@@ -34,9 +32,25 @@ document.addEventListener('DOMContentLoaded', (e) => {
 			searchField.placeholder = dropDownLocation.innerHTML;
 		} else if (event.target === dropDownTag) {
 			dropDownToggle.innerHTML = 'Search for: ' + dropDownTag.innerHTML;
-			searchField.placeholder = dropDownTag.innerHTML;
+			// searchField.placeholder = dropDownTag.innerHTML;
+			searchField.classList.add('hidden');
+			categorySearch.classList.remove('hidden');
 		}
 	});
+
+	// fetch the tags and create dropdown of tags in navbar
+	try {
+		const res = await fetch(`${api}businesses/tags`);
+		const { categories } = await res.json();
+		categories.forEach((category) => {
+			const createOption = document.createElement('option');
+			createOption.setAttribute('class', 'form-control');
+			createOption.innerHTML = category.type;
+			categorySearch.appendChild(createOption);
+		});
+	} catch (err) {
+		handleErrors(err);
+	}
 
 	// set up the event listener for the submit button
 	navbarSearchForm.addEventListener('submit', async (e) => {
