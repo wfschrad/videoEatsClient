@@ -9,7 +9,6 @@ const { mapAPI, api, port } = require('./config');
 const csrfProtection = csrf({ cookie: true });
 const asyncHandler = (handler) => (req, res, next) => handler(req, res, next).catch(next);
 
-
 // Create the express app
 const app = express();
 
@@ -37,41 +36,49 @@ app.get('/log-in', (req, res) => {
 	res.render('log-in', { title: 'Log In' });
 });
 
-app.get('/businesses/new', csrfProtection, asyncHandler(async (req, res) => {
-	const data = await fetch(`${api}businesses/tags`);
-	const { categories } = await data.json();
-	let business = {};
-	res.render('new-business', {
-		title: 'Add Business',
-		categories,
-		business,
-		errors: [],
-		csrfToken: req.csrfToken()
+app.get(
+	'/businesses/new',
+	csrfProtection,
+	asyncHandler(async (req, res) => {
+		const data = await fetch(`${api}businesses/tags`);
+		const { categories } = await data.json();
+		let business = {};
+		res.render('new-business', {
+			title: 'Add Business',
+			categories,
+			business,
+			errors: [],
+			csrfToken: req.csrfToken()
+		});
 	})
-}));
+);
 
-app.post('/businesses/new', csrfProtection, asyncHandler(async (req, res) => {
-	const { businessName, address, categoryId } = req.body;
-	//get lat and lng
-	await fetch(`${api}businesses/`, {
-		method: 'POST',
-		body: JSON.stringify({
-			name: businessName,
-			address,
-			categoryId
-		}),
-		headers: {
-			'Content-Type': 'application/json',
-			Authorization: `Bearer ${localStorage.getItem('VIDEO_EATS_ACCESS_TOKEN')}`
+app.post(
+	'/businesses/new',
+	csrfProtection,
+	asyncHandler(async (req, res) => {
+		const { businessName, address, categoryId } = req.body;
+		//get lat and lng
+		await fetch(`${api}businesses/`, {
+			method: 'POST',
+			body: JSON.stringify({
+				name: businessName,
+				address,
+				categoryId
+			}),
+			headers: {
+				'Content-Type': 'application/json',
+				Authorization: `Bearer ${localStorage.getItem('VIDEO_EATS_ACCESS_TOKEN')}`
+			}
+		});
+
+		if (!res.ok) {
+			throw res;
 		}
-	});
 
-	if (!res.ok) {
-		throw res;
-	}
-
-	res.redirect('/');
-}));
+		res.redirect('/');
+	})
+);
 
 app.get(`/businesses/:id(\\d+)`, async (req, res) => {
 	try {

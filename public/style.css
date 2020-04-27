@@ -1,5 +1,5 @@
 .hidden {
-	display: none;
+	display: none !important;
 }
 h1 {
 	color: purple;
@@ -256,16 +256,47 @@ html, body {
 
 /*Search results page*/
 .search-page-container {
-	width: 1280px;
+	max-width: 1280px;
 	margin: 0 auto;
+	padding: 40px;
 }
 .search-container {
 	display: grid;
-	grid-template-columns: 2fr 1fr;
+	grid-template-columns: 1fr 1fr;
 }
 .map-style {
 	grid-column: 2 / span 1;
 }
 .business-card-container {
 	grid-column: 1 span 2;
+}
+
+/* Navbar styles */
+.navbar-container {
+	display: flex;
+	justify-content: space-between;
+}
+
+#nav-search {
+	display: inline-block;
+}
+
+#account-options {
+	display: inline-block;
+}
+
+#navbar-search-form {
+	display: inline-block;
+}
+
+.navbar-category-dropdown {
+	display: inline-block;
+}
+
+#navbarSearch {
+	width: 400px;
+}
+
+#category-tags {
+	width: 400px;
 }
