@@ -1,19 +1,23 @@
 extends layout.pug
 include utils.pug
+
 block content
   div(class="sign-up-container")
     div(class="errors-container")
-    h1 Register New Business
-    form(class="sign-up-form-biz")
-      form(action='/businesses/new' method='post')
-        input(type='hidden' name='_csrf' value=csrfToken)
-        +textField('Business Name', 'businessName')
-        +textField('Address', 'address')
-        .form-group
-            label(for='bizCatForm') Business Category
+      h1 Register New Business
+        form(class="sign-up-form-biz")
+          .form-group
+            input(type='text' name='businessName' placeholder="Business Name" class="form-control")
+          .form-group
+            input(type='text' name='street' placeholder="Street Address" class="form-control")
+          .form-group
+            input(type='text' name='cityPostal' placeholder="City, State, Zip" class="form-control")
+          .form-group
+            label(for='categoryId') Business Category
             select#bizCatForm.form-control(name='categoryId' required)
-                each category in categories
-                    option(value=category.id)= category.type
-        div
-            button(type='submit' class="btn btn-primary") Add Business
-            a(href="/" class="ml-2") Cancel
+              each category in categories
+                  option(value=category.id)= category.type
+            div
+              button(type='submit' class="btn btn-primary") Add Business
+              a(href="/" class="ml-2") Cancel
+  script(type="module" src="/js/new-business.js")

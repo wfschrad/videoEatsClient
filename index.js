@@ -25,6 +25,12 @@ app.use((req, res, next) => {
 
 // Defining the routes
 app.get('/', async (req, res) => {
+
+	//test geocode
+	const data = await fetch('https://maps.googleapis.com/maps/api/geocode/json?address=1600+Amphitheatre+Parkway,+Mountain+View,+CA&key=AIzaSyDGY66OXtcdxsGZP88SUVAJGu7zK5-Eli4');
+	const geo = await data.json();
+	console.log('GEO', geo.results[0].geometry.location)
+
 	res.render('index', { title: 'Home' });
 });
 
@@ -58,7 +64,15 @@ app.post(
 	csrfProtection,
 	asyncHandler(async (req, res) => {
 		const { businessName, address, categoryId } = req.body;
+		console.log("req body biz form", req.body)
+
 		//get lat and lng
+		const data = await fetch(`https://maps.googleapis.com/maps/api/geocode/json?address=1600+Amphitheatre+Parkway,+Mountain+View,+CA&key=AIzaSyDGY66OXtcdxsGZP88SUVAJGu7zK5-Eli4`);
+		const geo = await data.json();
+		console.log('GEO', geo.results[0].geometry.location);
+		const lat = geo.results[0].geometry.location.lat;
+		const lng = geo.results[0].geometry.location.lng;
+
 		await fetch(`${api}businesses/`, {
 			method: 'POST',
 			body: JSON.stringify({

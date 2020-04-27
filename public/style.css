@@ -222,13 +222,17 @@ h1 {
 }
 .search-container {
 	display: grid;
-	grid-template-columns: 1fr 1fr;
+	grid-template-columns: 59% 41%;
 }
 .map-style {
 	grid-column: 2 / span 1;
 }
 .business-card-container {
 	grid-column: 1 span 2;
+}
+.add-business {
+	font-weight: 500;
+	font-size: 16px;
 }
 
 /* Navbar styles */
