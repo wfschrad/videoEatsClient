@@ -9,12 +9,13 @@ block content
         input(type='email', name="email", placeholder='Enter email' class="form-control")
       .form-group
         input(type='password', name="password", placeholder='Password' class="form-control")
-      div
-        button(type='submit' class="btn btn-primary") Log In
-        a(href="/" class="ml-2") Cancel
+      div.button-container
+        div
+          button(type='submit' class="btn btn-primary") Log In
+          a(href="/" class="ml-2") Cancel
+        div
+          button(type="button" class="btn btn-light" id="demo-user") Demo User
       a(href='/sign-up') Don't have an account? Sign up here.
     div(class="image-container")
       img(src="/images/sign-up-image.jpg")
-  script(type="module" src="/js/log-in.js")
-  script(type="module" src="/js/navbar-search.js")
-  //- TODO: Create a demo user login info
+  script(src="/js/log-in.js")
