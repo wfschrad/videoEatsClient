@@ -5,18 +5,10 @@ if (localStorage.getItem('VIDEO_EATS_ACCESS_TOKEN')) {
 	window.history.back();
 }
 const logInForm = document.querySelector('.log-in-form');
+const demoUser = document.getElementById('demo-user');
+const loginButton = document.getElementById('login-button');
 
-// set up the event listener for the submit button
-logInForm.addEventListener('submit', async (e) => {
-	// Prevent the default behavior of the submit button
-	e.preventDefault();
-	// Create a new formData object
-	const formData = new FormData(logInForm);
-	// Use formData function to pull out data from the log in form
-	const email = formData.get('email');
-	const password = formData.get('password');
-	const body = { email, password };
-
+async function fetchUser(body) {
 	try {
 		const res = await fetch(`${api}users/token`, {
 			method: 'POST',
@@ -37,4 +29,30 @@ logInForm.addEventListener('submit', async (e) => {
 	} catch (err) {
 		handleErrors(err);
 	}
+}
+
+// set up the event listener for the submit button
+logInForm.addEventListener('submit', async (e) => {
+	// Prevent the default behavior of the submit button
+	e.preventDefault();
+	// Create a new formData object
+	const formData = new FormData(logInForm);
+	// Use formData function to pull out data from the log in form
+	const email = formData.get('email');
+	const password = formData.get('password');
+	const body = { email, password };
+	console.log('login button', email, password);
+	fetchUser(body);
+});
+
+demoUser.addEventListener('click', async (e) => {
+	e.preventDefault();
+	const email = 'alan@test.com';
+	const password = 'test';
+	const body = {
+		email,
+		password
+	};
+	console.log('demo button', body);
+	fetchUser(body);
 });

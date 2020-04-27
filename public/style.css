@@ -71,6 +71,15 @@ h1 {
 	grid-column: 1 / span 1;
 }
 
+.button-container {
+	display: flex;
+	justify-content: space-between;
+}
+
+#demo-user {
+	color: red;
+}
+
 /* Write a review styles */
 .form-container {
 	margin: 0 auto;

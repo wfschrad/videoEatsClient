@@ -32,7 +32,7 @@ document.addEventListener('DOMContentLoaded', async (e) => {
 			// when the dropdown for name is selected, hide the category dropdown and display the text search and set the search tag key in session storage to null
 			searchField.classList.remove('hidden');
 			categorySearch.classList.add('hidden');
-			sessionStorage.setItem('SEARCH_TAG', null);
+			sessionStorage.removeItem('SEARCH_TAG');
 		} else if (event.target === dropDownLocation) {
 			dropDownToggle.innerHTML = 'Search by: ' + dropDownLocation.innerHTML;
 			searchField.placeholder = dropDownLocation.innerHTML;
@@ -42,8 +42,8 @@ document.addEventListener('DOMContentLoaded', async (e) => {
 			// when the dropdown for tag is selected, hide the text search and display the category dropdown and set the search value to null
 			searchField.classList.add('hidden');
 			categorySearch.classList.remove('hidden');
-			document.getElementById('navbarSearch').value = null;
-			sessionStorage.setItem('SEARCH_VALUE', null);
+			document.getElementById('navbarSearch').value = '';
+			sessionStorage.removeItem('SEARCH_VALUE');
 
 			categorySearch.addEventListener('change', (event) => {
 				tagValue = event.target.value;
