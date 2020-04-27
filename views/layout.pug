@@ -33,7 +33,8 @@ html
               a.nav-link(class='navLoggedOut' href='/sign-up') Sign up
             form(class='form-inline pr-4' action='/user/logout' method='post' style="padding-right:100px;")
             button(id='logout_btn' class='btn btn-sm btn-warning navLoggedIn_Logout hidden' type='submit') Logout
+      .block-content
     block content
-  script(type="module" src="/js/navbar-search.js")
-  script(type="module" src="/js/user-auth.js")
-  script(type="module" src="/js/log-out.js")
+    script(type="module" src="/js/navbar-search.js")
+    script(type="module" src="/js/user-auth.js")
+    script(type="module" src="/js/log-out.js")
