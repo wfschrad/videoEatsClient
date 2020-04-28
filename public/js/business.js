@@ -9,20 +9,36 @@ document.addEventListener('DOMContentLoaded', async () => {
 	// Check each review for User ID. if there is a match, then add the edit/delete button
 	function checkUserReview(reviews) {
 		const sessionUserId = parseInt(localStorage.getItem('VIDEO_EATS_CURRENT_USER_ID'));
-		reviews.forEach((review) => {
-			console.log(sessionUserId);
-			console.log('id:', review.User.id);
-			const edit = document.getElementById(`edit-${review.User.id}`);
-			const deleteButton = document.getElementById(`delete-${review.User.id}`);
-			if (sessionUserId === review.User.id) {
-				console.log('we have a match!');
-				edit.classList.remove('hidden');
-				deleteButton.classList.remove('hidden');
-				edit.addEventListener('click', async (e) => {
-					const response = await fetch(`${api}businesses/reviews/${review.id}`);
-					const { review } = await response.json();
-					console.log(review);
+		reviews.forEach((element) => {
+			// const edit = document.getElementById(`edit-${element.User.id}`);
+			// edit.addEventListener('click', async (e) => {
+			// 	const response = await fetch(`${api}businesses/reviews/${element.id}`, {
+			// 		method: 'PUT',
+			// 		headers: {
+			// 			Authorization: `Bearer ${localStorage.getItem('VIDEO_EATS_ACCESS_TOKEN')}`
+			// 		}
+			// 	});
+			// 	if (!response.ok) {
+			// 		throw response;
+			// 	}
+			// 	window.location.href = `/businesses/reviews/${element.id}`;
+			// });
+			const deleteButton = document.getElementById(`delete-${element.User.id}`);
+			deleteButton.addEventListener('click', async (e) => {
+				const response = await fetch(`${api}businesses/reviews/${element.id}`, {
+					method: 'DELETE',
+					headers: {
+						Authorization: `Bearer ${localStorage.getItem('VIDEO_EATS_ACCESS_TOKEN')}`
+					}
 				});
+				if (!response.ok) {
+					throw response;
+				}
+				document.getElementById(`review-${element.id}`).remove();
+			});
+			if (sessionUserId === element.User.id) {
+				// edit.classList.remove('hidden');
+				deleteButton.classList.remove('hidden');
 			}
 		});
 	}
