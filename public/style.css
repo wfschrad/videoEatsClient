@@ -8,12 +8,17 @@ h1 {
 	padding: 40px;
 }
 
+html,
+body {
+	height: 100%;
+}
+
 .parent {
 	display: flex;
 	justify-content: center;
 	align-items: center;
 	background-image: url('images/home.jpg');
-	height: 1000px;
+	height: 100%;
 	background-size: cover;
 	background-repeat: no-repeat;
 }
@@ -311,11 +316,20 @@ h1 {
 }
 
 #navbarSearch {
-	width: 400px;
+	max-width: 400px;
 }
 
 #category-tags {
-	width: 400px;
+	max-width: 400px;
+}
+
+#home > a {
+	color: darkmagenta;
+	font-weight: bold;
+}
+#home a:before {
+	font-family: 'Font Awesome 5 Free';
+	content: '\f0f4';
 }
 
 /* Business info page */
