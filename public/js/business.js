@@ -61,7 +61,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 						<div class="video-review">
 							<iframe width="560" height="315" src=${review.videoLink}></iframe>
 						</div>
-						<p <span class="card-text">${review.User.userName}</span> <button id="${review.id}-1" class="vote upVote">Like</button> <button id="${review.id}-2" class="vote downVote">Dislike</button></p>
+						<p <span class="card-text">${review.User.userName}</span> <button id="${review.id}-1" class="vote upVote">Like: ${review.upVoteCount}</button> <button id="${review.id}-2" class="vote downVote">Dislike: ${review.downVoteCount}</button></p>
 						<p class="card-text">${review.createdAt.slice(5, 10) + '-' + review.createdAt.slice(0, 4)}</p>
 					</div>
 				</div>
@@ -78,7 +78,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 							<span class="star"></span>
 						</div>
 						<p class="card-text review-text">${review.reviewText}</p>
-						<p <span class="card-text">${review.User.userName}</span> <button id="${review.id}-1" class="vote upVote">Like</button> <button id="${review.id}-2" class="vote downVote">Dislike</button></p>
+						<p <span class="card-text">${review.User.userName}</span> <button id="${review.id}-1" class="vote upVote">Like: ${review.upVoteCount}</button> <button id="${review.id}-2" class="vote downVote">Dislike: ${review.downVoteCount}</button></p>
 						<p class="card-text">${review.createdAt.slice(5, 10) + '-' + review.createdAt.slice(0, 4)}</p>
 					</div>
 				</div>`;
@@ -97,7 +97,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 						<div class="video-review">
 							<iframe width="560" height="315" src=${review.videoLink}></iframe>
 						</div>
-						<p <span class="card-text">${review.User.userName}</span> <button id="${review.id}-1" class="vote upVote">Like</button> <button id="${review.id}-2" class="vote downVote">Dislike</button></p>
+						<p <span class="card-text">${review.User.userName}</span> <button id="${review.id}-1" class="vote upVote">Like: ${review.upVoteCount}</button> <button id="${review.id}-2" class="vote downVote">Dislike: ${review.downVoteCount}</button></p>
 						<p class="card-text">${review.createdAt.slice(5, 10) + '-' + review.createdAt.slice(0, 4)}</p>
 					</div>
 				</div>`;
@@ -163,6 +163,8 @@ document.addEventListener('DOMContentLoaded', async () => {
 				}
 				const data = await res.json();
 				console.log('data(155', data);
+				btn.innerHTML = `Like: ${data.upVoteCount}`;
+				btnMirror.innerHTML = `Dislike: ${data.downVoteCount}`;
 
 				//window.location.href = `/businesses/${id}`;
 			} catch (err) {
@@ -210,6 +212,8 @@ document.addEventListener('DOMContentLoaded', async () => {
 				}
 				const data = await res.json();
 				console.log('data(155', data);
+				btn.innerHTML = `Dislike: ${data.downVoteCount}`;
+				btnMirror.innerHTML = `Like: ${data.upVoteCount}`;
 
 				//window.location.href = `/businesses/${id}`;
 			} catch (err) {
