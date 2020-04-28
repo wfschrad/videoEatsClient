@@ -1,9 +1,10 @@
 extends layout.pug
 
 block content
-    .photo-wrapper.mt-2
-        each photo in photos
-            img.photo-item.ml-1(src=`${photo}`)
+    if photos
+        .photo-wrapper.mt-2
+            each photo in photos
+                img.photo-item.ml-1(src=`${photo}`)
     div(class="container")
         .container-md
             h1 #{business.name}

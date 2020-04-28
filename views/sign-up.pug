@@ -15,9 +15,12 @@ block content
         input(type='email', name="email", placeholder='Enter email' class="form-control")
       .form-group
         input(type='password', name="password", placeholder='Password' class="form-control")
-      div
-        button(type='submit' class="btn btn-primary") Sign Up
-        a(href="/" class="ml-2") Cancel
+      div.button-container
+        div
+          button(type='submit' class="btn btn-primary" id="login-button") Log In
+          a(href="/" class="ml-2") Cancel
+        div
+          button(type="submit" class="btn btn-light" id="demo-user") Demo User
       a(href='/log-in' class="mt-2") Already have an account? Log in here.
     div(class="image-container")
       img(src="/images/sign-up-image.jpg")

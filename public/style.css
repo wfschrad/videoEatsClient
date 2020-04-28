@@ -8,6 +8,44 @@ h1 {
 	padding: 40px;
 }
 
+.bg-img {
+	/* background-image: url('/images/patrick-tomasso.jpg');
+	height: 500px; */
+	background-size: cover;
+ 	background-repeat: no-repeat;
+}
+
+
+.parent {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	background-image: url('images/home.jpg');
+	height: 1000px;
+	background-size: cover;
+ 	background-repeat: no-repeat;
+}
+
+.child {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	background-color: white;
+	padding: 25px;
+}
+
+.cell {
+	margin: auto;
+}
+
+.grid {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
+}
+
 .business-cards {
 	color: inherit;
 }
@@ -51,6 +89,11 @@ h1 {
 .image-container img {
 	width: auto;
 	height: 100%;
+}
+
+.new-business-form {
+	margin: 0 auto;
+	width: 800px;
 }
 
 /* Log in form styles */
@@ -231,13 +274,20 @@ h1 {
 }
 .search-container {
 	display: grid;
-	grid-template-columns: 1fr 1fr;
+	grid-template-columns: 59% 41%;
 }
+
 .map-style {
 	grid-column: 2 / span 1;
 }
+
 .business-card-container {
 	grid-column: 1 span 2;
+}
+
+.add-business {
+	font-weight: 500;
+	font-size: 16px;
 }
 
 /* Navbar styles */
