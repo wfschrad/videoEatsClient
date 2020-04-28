@@ -45,7 +45,7 @@ logInForm.addEventListener('submit', async (e) => {
 
 demoUser.addEventListener('click', async (e) => {
 	e.preventDefault();
-	const email = 'alan@test.com';
+	const email = 'demouser@testemail.com';
 	const password = 'test';
 	const body = {
 		email,
