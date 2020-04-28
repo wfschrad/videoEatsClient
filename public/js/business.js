@@ -125,8 +125,6 @@ document.addEventListener('DOMContentLoaded', async () => {
 	//add listeners for vote buttons
 	const upVoteBtns = document.querySelectorAll('.upVote');
 	const downVoteBtns = document.querySelectorAll('.downVote');
-	console.log('upVoteBtns', upVoteBtns);
-	console.log('downVoteBtns', downVoteBtns);
 
 	for (let btn of upVoteBtns) {
 		btn.addEventListener('click', async (ev) => {
