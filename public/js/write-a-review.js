@@ -1,6 +1,10 @@
 import { handleErrors, api } from './utils.js';
 
 document.addEventListener('DOMContentLoaded', async () => {
+	if (!localStorage.getItem('VIDEO_EATS_ACCESS_TOKEN')) {
+		window.location.href = '/log-in';
+		return;
+	}
 	const reviewForm = document.querySelector('.create-review');
 	let stars = document.querySelectorAll('.star');
 	// Not using the business Search at this time **4/22/2020**

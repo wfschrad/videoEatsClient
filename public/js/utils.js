@@ -40,7 +40,6 @@ export const addMarkers = (map, targets) => {
 	const purpleIcon = 'http://maps.google.com/mapfiles/ms/icons/purple.png';
 	const purpleIconDot = 'http://maps.google.com/mapfiles/ms/icons/purple-dot.png';
 
-
 	// const options = {
 	// 	center: sf,
 	// 	zoom: 13
@@ -48,11 +47,10 @@ export const addMarkers = (map, targets) => {
 	// const map = new google.maps.Map(document.getElementById('map'),
 	// 	options);
 
-
 	const markers = [
 		{ coords: sf, iconImage: purpleIcon, content: '<h3>Resto Info' },
 		{ coords: test2, iconImage: purpleIconDot, content: '<h3>Resto Info' },
-		{ coords: test3, iconImage: blueFlagIcon, content: '<h3>Resto Info' },
+		{ coords: test3, iconImage: blueFlagIcon, content: '<h3>Resto Info' }
 	];
 
 	markers.forEach((props) => {
@@ -62,7 +60,7 @@ export const addMarkers = (map, targets) => {
 	function addMarker(props) {
 		const marker = new google.maps.Marker({
 			position: props.coords,
-			map: map,
+			map: map
 		});
 
 		if (props.iconImage) {
@@ -78,7 +76,7 @@ export const addMarkers = (map, targets) => {
 			});
 			marker.addListener('mouseout', () => {
 				infoWindow.close(map, marker);
-			})
+			});
 		}
 	}
 	//}
