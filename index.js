@@ -54,8 +54,10 @@ app.get(
 	})
 );
 
-app.get(`/businesses/:id(\\d+)`, async (req, res) => {
-	try {
+app.get(
+	`/businesses/:id(\\d+)`,
+	csrfProtection,
+	asyncHandler(async (req, res) => {
 		const fetchBusiness = await fetch(`${api}businesses/${req.params.id}`);
 		const { business } = await fetchBusiness.json();
 		let splitPhotos;
@@ -65,22 +67,21 @@ app.get(`/businesses/:id(\\d+)`, async (req, res) => {
 		res.render('business', {
 			title: business.name,
 			business,
-			photos: splitPhotos
+			photos: splitPhotos,
+			csrfToken: req.csrfToken()
 		});
-	} catch (err) {
-		console.error(err);
-	}
-});
+	})
+);
 
-app.get('/businesses/:id/write-a-review', async (req, res) => {
-	try {
+app.get(
+	'/businesses/:id/write-a-review',
+	csrfProtection,
+	asyncHandler(async (req, res) => {
 		const fetchBusiness = await fetch(`${api}businesses/${req.params.id}`);
 		const { business } = await fetchBusiness.json();
 		res.render('write-a-review', { title: 'Write a Review', business });
-	} catch (err) {
-		console.error(err);
-	}
-});
+	})
+);
 
 app.get('/search', (req, res) => {
 	res.render('search', {
@@ -89,9 +90,9 @@ app.get('/search', (req, res) => {
 	});
 });
 
-app.get('/map', (req, res) => {
-	res.render('google-map');
-});
+// app.get('/map', (req, res) => {
+// 	res.render('google-map');
+// });
 
 // Defining the port
 //const port = 4000;
