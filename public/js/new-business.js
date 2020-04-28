@@ -1,6 +1,10 @@
 import { handleErrors, api } from './utils.js';
 
 document.addEventListener('DOMContentLoaded', (e) => {
+	if (!localStorage.getItem('VIDEO_EATS_ACCESS_TOKEN')) {
+		window.location.href = '/log-in';
+		return;
+	}
 	const businessSignUpForm = document.querySelector('.sign-up-form-biz');
 	businessSignUpForm.addEventListener('submit', async (e) => {
 		e.preventDefault();
@@ -41,9 +45,6 @@ document.addEventListener('DOMContentLoaded', (e) => {
 			alert('Business added! Thanks!');
 			window.location.href = '/';
 		} catch (err) {
-			if (err.status === 401) {
-				window.location.href = '/log-in';
-			}
 			handleErrors(err);
 		}
 	});

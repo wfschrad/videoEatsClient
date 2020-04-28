@@ -6,7 +6,44 @@ document.addEventListener('DOMContentLoaded', async () => {
 	const urlSplit = url.split('/');
 	const id = urlSplit[urlSplit.length - 1];
 
-	//fetch user id from storage
+	// Check each review for User ID. if there is a match, then add the edit/delete button
+	function checkUserReview(reviews) {
+		const sessionUserId = parseInt(localStorage.getItem('VIDEO_EATS_CURRENT_USER_ID'));
+		reviews.forEach((element) => {
+			// const edit = document.getElementById(`edit-${element.User.id}`);
+			// edit.addEventListener('click', async (e) => {
+			// 	const response = await fetch(`${api}businesses/reviews/${element.id}`, {
+			// 		method: 'PUT',
+			// 		headers: {
+			// 			Authorization: `Bearer ${localStorage.getItem('VIDEO_EATS_ACCESS_TOKEN')}`
+			// 		}
+			// 	});
+			// 	if (!response.ok) {
+			// 		throw response;
+			// 	}
+			// 	window.location.href = `/businesses/reviews/${element.id}`;
+			// });
+			const deleteButton = document.getElementById(`delete-${element.User.id}`);
+			deleteButton.addEventListener('click', async (e) => {
+				const response = await fetch(`${api}businesses/reviews/${element.id}`, {
+					method: 'DELETE',
+					headers: {
+						Authorization: `Bearer ${localStorage.getItem('VIDEO_EATS_ACCESS_TOKEN')}`
+					}
+				});
+				if (!response.ok) {
+					throw response;
+				}
+				document.getElementById(`review-${element.id}`).remove();
+			});
+			if (sessionUserId === element.User.id) {
+				// edit.classList.remove('hidden');
+				deleteButton.classList.remove('hidden');
+			}
+		});
+	}
+
+	//vote buttons
 	const userId = localStorage.getItem('VIDEO_EATS_CURRENT_USER_ID');
 
 	// Handling the click event for write a review
@@ -61,8 +98,16 @@ document.addEventListener('DOMContentLoaded', async () => {
 						<div class="video-review">
 							<iframe width="560" height="315" src=${review.videoLink}></iframe>
 						</div>
-						<p <span class="card-text">${review.User.userName}</span> <button id="${review.id}-1" class="vote upVote">Like: ${review.upVoteCount}</button> <button id="${review.id}-2" class="vote downVote">Dislike: ${review.downVoteCount}</button></p>
+						<p>
+							<span class="card-text">${review.User.userName}</span> 
+							<button id="up-${review.id}" class="vote upVote">Like</button>
+							<button id="down-${review.id}" class="vote downVote">Dislike</button>
+						</p>
 						<p class="card-text">${review.createdAt.slice(5, 10) + '-' + review.createdAt.slice(0, 4)}</p>
+						<div>
+							<button class="review-edit hidden btn btn-light" id="edit-${review.User.id}">Edit</button>
+							<button class="review-delete hidden btn btn-danger ml-2" id="delete-${review.User.id}">Delete</button>
+						</div>
 					</div>
 				</div>
 				`;
@@ -78,8 +123,16 @@ document.addEventListener('DOMContentLoaded', async () => {
 							<span class="star"></span>
 						</div>
 						<p class="card-text review-text">${review.reviewText}</p>
-						<p <span class="card-text">${review.User.userName}</span> <button id="${review.id}-1" class="vote upVote">Like: ${review.upVoteCount}</button> <button id="${review.id}-2" class="vote downVote">Dislike: ${review.downVoteCount}</button></p>
+						<p>
+							<span class="card-text">${review.User.userName}</span>
+							<button id="up-${review.id}" class="vote upVote">Like</button>
+							<button id="down-${review.id}" class="vote downVote">Dislike</button>
+						</p>
 						<p class="card-text">${review.createdAt.slice(5, 10) + '-' + review.createdAt.slice(0, 4)}</p>
+						<div>
+							<button class="review-edit hidden btn btn-light" id="edit-${review.User.id}">Edit</button>
+							<button class="review-delete hidden btn btn-danger ml-2" id="delete-${review.User.id}">Delete</button>
+						</div>
 					</div>
 				</div>`;
 			} else {
@@ -97,8 +150,16 @@ document.addEventListener('DOMContentLoaded', async () => {
 						<div class="video-review">
 							<iframe width="560" height="315" src=${review.videoLink}></iframe>
 						</div>
-						<p <span class="card-text">${review.User.userName}</span> <button id="${review.id}-1" class="vote upVote">Like: ${review.upVoteCount}</button> <button id="${review.id}-2" class="vote downVote">Dislike: ${review.downVoteCount}</button></p>
+						<p>
+							<span class="card-text">${review.User.userName}</span>
+							<button id="up-${review.id}" class="vote upVote">Like</button>
+							<button id="down-${review.id}" class="vote downVote">Dislike</button>
+						</p>
 						<p class="card-text">${review.createdAt.slice(5, 10) + '-' + review.createdAt.slice(0, 4)}</p>
+						<div>
+							<button class="review-edit hidden btn btn-light" id="edit-${review.User.id}">Edit</button>
+							<button class="review-delete hidden btn btn-danger ml-2" id="delete-${review.User.id}">Delete</button>
+						</div>
 					</div>
 				</div>`;
 			}
@@ -119,6 +180,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 			});
 			document.querySelector('.stars').setAttribute('data-rating', rating);
 		});
+		checkUserReview(reviews);
 	} catch (err) {
 		handleErrors(err);
 	}
@@ -133,13 +195,13 @@ document.addEventListener('DOMContentLoaded', async () => {
 	for (let btn of upVoteBtns) {
 		btn.addEventListener('click', async (ev) => {
 			console.log('target', ev.target);
-			console.log('targetId', ev.target.id)
+			console.log('targetId', ev.target.id);
 			btn.disabled = true;
 			btn.classList.add('clicked');
 			const toggleTargetId = `${ev.target.id.slice(0, ev.target.id.length - 1)}2`;
-			console.log('TOGGLEtargetId', toggleTargetId)
+			console.log('TOGGLEtargetId', toggleTargetId);
 
-			const btnMirror = document.getElementById(toggleTargetId)
+			const btnMirror = document.getElementById(toggleTargetId);
 			btnMirror.disabled = false;
 			btnMirror.classList.remove('clicked');
 
@@ -147,16 +209,19 @@ document.addEventListener('DOMContentLoaded', async () => {
 			try {
 				const body = {
 					//"user": { "id": 4 },
-					"vote": { "typeId": 1 }
-				}
-				const res = await fetch(`${api}businesses/reviews/${ev.target.id.slice(0, ev.target.id.length - 2)}/votes`, {
-					method: 'POST',
-					body: JSON.stringify(body),
-					headers: {
-						'Content-Type': 'application/json',
-						Authorization: `Bearer ${localStorage.getItem('VIDEO_EATS_ACCESS_TOKEN')}`
+					vote: { typeId: 1 }
+				};
+				const res = await fetch(
+					`${api}businesses/reviews/${ev.target.id.slice(0, ev.target.id.length - 2)}/votes`,
+					{
+						method: 'POST',
+						body: JSON.stringify(body),
+						headers: {
+							'Content-Type': 'application/json',
+							Authorization: `Bearer ${localStorage.getItem('VIDEO_EATS_ACCESS_TOKEN')}`
+						}
 					}
-				});
+				);
 
 				if (!res.ok) {
 					throw res;
@@ -171,9 +236,9 @@ document.addEventListener('DOMContentLoaded', async () => {
 				if (err.status === 401) {
 					window.location.href = '/log-in';
 				} else {
-					console.log('NOPE')
-					console.log(err)
-					console.log(err.message)
+					console.log('NOPE');
+					console.log(err);
+					console.log(err.message);
 				}
 			}
 		});
@@ -182,13 +247,13 @@ document.addEventListener('DOMContentLoaded', async () => {
 	for (let btn of downVoteBtns) {
 		btn.addEventListener('click', async (ev) => {
 			console.log('target', ev.target);
-			console.log('targetId', ev.target.id)
+			console.log('targetId', ev.target.id);
 			btn.disabled = true;
 			btn.classList.add('clicked');
 			const toggleTargetId = `${ev.target.id.slice(0, ev.target.id.length - 1)}1`;
-			console.log('TOGGLEtargetId', toggleTargetId)
+			console.log('TOGGLEtargetId', toggleTargetId);
 
-			const btnMirror = document.getElementById(toggleTargetId)
+			const btnMirror = document.getElementById(toggleTargetId);
 			btnMirror.disabled = false;
 			btnMirror.classList.remove('clicked');
 
@@ -196,16 +261,19 @@ document.addEventListener('DOMContentLoaded', async () => {
 			try {
 				const body = {
 					//"user": { "id": 4 },
-					"vote": { "typeId": 2 }
+					vote: { typeId: 2 }
 				};
-				const res = await fetch(`${api}businesses/reviews/${ev.target.id.slice(0, ev.target.id.length - 2)}/votes`, {
-					method: 'POST',
-					body: JSON.stringify(body),
-					headers: {
-						'Content-Type': 'application/json',
-						Authorization: `Bearer ${localStorage.getItem('VIDEO_EATS_ACCESS_TOKEN')}`
+				const res = await fetch(
+					`${api}businesses/reviews/${ev.target.id.slice(0, ev.target.id.length - 2)}/votes`,
+					{
+						method: 'POST',
+						body: JSON.stringify(body),
+						headers: {
+							'Content-Type': 'application/json',
+							Authorization: `Bearer ${localStorage.getItem('VIDEO_EATS_ACCESS_TOKEN')}`
+						}
 					}
-				});
+				);
 
 				if (!res.ok) {
 					throw res;
@@ -220,12 +288,12 @@ document.addEventListener('DOMContentLoaded', async () => {
 				if (err.status === 401) {
 					window.location.href = '/log-in';
 				} else {
-					console.log('NOPE')
-					console.log(err)
-					console.log(err.message)
+					console.log('NOPE');
+					console.log(err);
+					console.log(err.message);
 				}
 			}
-		})
+		});
 	}
 
 	async function renderVoteButtons() {
@@ -233,7 +301,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 
 		const votesRes = await fetch(`${api}users/${userId}/votes`);
 		const { userVotes } = await votesRes.json();
-		console.log('userVotes', userVotes)
+		console.log('userVotes', userVotes);
 
 		userVotes.forEach((userVote) => {
 			const restoredBtn = document.getElementById(`${userVote.reviewId}-${userVote.typeId}`);
@@ -243,6 +311,4 @@ document.addEventListener('DOMContentLoaded', async () => {
 			}
 		});
 	}
-
-
 });
