@@ -98,11 +98,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 						<div class="video-review">
 							<iframe width="560" height="315" src=${review.videoLink}></iframe>
 						</div>
-						<p>
-							<span class="card-text">${review.User.userName}</span> 
-							<button id="up-${review.id}" class="vote upVote">Like</button>
-							<button id="down-${review.id}" class="vote downVote">Dislike</button>
-						</p>
+						<p <span class="card-text username">${review.User.userName}</span> <button id="${review.id}-1" class="vote upVote">Like: ${review.upVoteCount}</button> <button id="${review.id}-2" class="vote downVote">Dislike: ${review.downVoteCount}</button></p>
 						<p class="card-text">${review.createdAt.slice(5, 10) + '-' + review.createdAt.slice(0, 4)}</p>
 						<div>
 							<button class="review-edit hidden btn btn-light" id="edit-${review.User.id}">Edit</button>
@@ -123,11 +119,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 							<span class="star"></span>
 						</div>
 						<p class="card-text review-text">${review.reviewText}</p>
-						<p>
-							<span class="card-text">${review.User.userName}</span>
-							<button id="up-${review.id}" class="vote upVote">Like</button>
-							<button id="down-${review.id}" class="vote downVote">Dislike</button>
-						</p>
+						<p <span class="card-text username">${review.User.userName}</span> <button id="${review.id}-1" class="vote upVote">Like: ${review.upVoteCount}</button> <button id="${review.id}-2" class="vote downVote">Dislike: ${review.downVoteCount}</button></p>
 						<p class="card-text">${review.createdAt.slice(5, 10) + '-' + review.createdAt.slice(0, 4)}</p>
 						<div>
 							<button class="review-edit hidden btn btn-light" id="edit-${review.User.id}">Edit</button>
@@ -150,11 +142,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 						<div class="video-review">
 							<iframe width="560" height="315" src=${review.videoLink}></iframe>
 						</div>
-						<p>
-							<span class="card-text">${review.User.userName}</span>
-							<button id="up-${review.id}" class="vote upVote">Like</button>
-							<button id="down-${review.id}" class="vote downVote">Dislike</button>
-						</p>
+						<p <span class="card-text username">${review.User.userName}</span> <button id="${review.id}-1" class="vote upVote">Like: ${review.upVoteCount}</button> <button id="${review.id}-2" class="vote downVote">Dislike: ${review.downVoteCount}</button></p>
 						<p class="card-text">${review.createdAt.slice(5, 10) + '-' + review.createdAt.slice(0, 4)}</p>
 						<div>
 							<button class="review-edit hidden btn btn-light" id="edit-${review.User.id}">Edit</button>
