@@ -8,6 +8,44 @@ h1 {
 	padding: 40px;
 }
 
+.bg-img {
+	/* background-image: url('/images/patrick-tomasso.jpg');
+	height: 500px; */
+	background-size: cover;
+ 	background-repeat: no-repeat;
+}
+
+
+.parent {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	background-image: url('images/home.jpg');
+	height: 1000px;
+	background-size: cover;
+ 	background-repeat: no-repeat;
+}
+
+.child {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	background-color: white;
+	padding: 25px;
+}
+
+.cell {
+	margin: auto;
+}
+
+.grid {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
+}
+
 .business-cards {
 	color: inherit;
 }
