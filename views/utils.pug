@@ -9,7 +9,7 @@ mixin validationErrorSummary(errors)
 mixin textField(labelText, fieldName, fieldValue, placeHolder)
     div(class="form-group")
         label(for="fieldName")= labelText
-        input(type="text" id=fieldName name=fieldName value=fieldValue class="form-control" required)
+        input(type="text" id=fieldName name=fieldName value=fieldValue class="form-control" placeholder=placeHolder required)
 
 mixin numberField(labelText, fieldName, fieldValue, placeHolder)
     div(class="form-group")

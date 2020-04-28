@@ -6,7 +6,6 @@ if (localStorage.getItem('VIDEO_EATS_ACCESS_TOKEN')) {
 }
 const logInForm = document.querySelector('.log-in-form');
 const demoUser = document.getElementById('demo-user');
-const loginButton = document.getElementById('login-button');
 
 async function fetchUser(body) {
 	try {
@@ -41,7 +40,6 @@ logInForm.addEventListener('submit', async (e) => {
 	const email = formData.get('email');
 	const password = formData.get('password');
 	const body = { email, password };
-	console.log('login button', email, password);
 	fetchUser(body);
 });
 
@@ -53,6 +51,5 @@ demoUser.addEventListener('click', async (e) => {
 		email,
 		password
 	};
-	console.log('demo button', body);
 	fetchUser(body);
 });

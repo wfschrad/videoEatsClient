@@ -2,23 +2,9 @@
 // TODO: change based on the name of the class/id from the pug
 import { handleErrors, api } from './utils.js';
 const signUpForm = document.querySelector('.sign-up-form');
+const demoUser = document.getElementById('demo-user');
 
-// set up the event listener for the submit button
-signUpForm.addEventListener('submit', async (e) => {
-	// Prevent the default behavior of the submit button
-	e.preventDefault();
-
-	// Create a new formData object
-	const formData = new FormData(signUpForm);
-
-	// Use formData function to pull out data from the sign up form
-	const firstName = formData.get('firstName');
-	const lastName = formData.get('lastName');
-	const email = formData.get('email');
-	const password = formData.get('password');
-	const userName = formData.get('userName');
-
-	const body = { firstName, lastName, email, password, userName: userName, revScore: 0, statusTypeId: 1 };
+async function fetchUser(body) {
 	try {
 		const res = await fetch(`${api}users`, {
 			method: 'POST',
@@ -40,4 +26,37 @@ signUpForm.addEventListener('submit', async (e) => {
 	} catch (err) {
 		handleErrors(err);
 	}
+}
+
+// set up the event listener for the submit button
+signUpForm.addEventListener('submit', async (e) => {
+	// Prevent the default behavior of the submit button
+	e.preventDefault();
+
+	// Create a new formData object
+	const formData = new FormData(signUpForm);
+
+	// Use formData function to pull out data from the sign up form
+	const firstName = formData.get('firstName');
+	const lastName = formData.get('lastName');
+	const email = formData.get('email');
+	const password = formData.get('password');
+	const userName = formData.get('userName');
+
+	const body = { firstName, lastName, email, password, userName: userName, revScore: 0, statusTypeId: 1 };
+	fetchUser(body);
+});
+
+// set up event handler for the demo user
+demoUser.addEventListener('click', (e) => {
+	e.preventDefault();
+	const randomNumber = Math.floor(Math.random() * 100);
+	const firstName = `User${randomNumber}`;
+	const lastName = randomNumber;
+	const password = 'test';
+	const email = `${firstName}@testmail.com`;
+	const userName = firstName;
+
+	const body = { firstName, lastName, email, password, userName, revScore: 0, statusTypeId: 1 };
+	fetchUser(body);
 });
