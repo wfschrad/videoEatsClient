@@ -8,14 +8,6 @@ h1 {
 	padding: 40px;
 }
 
-.bg-img {
-	/* background-image: url('/images/patrick-tomasso.jpg');
-	height: 500px; */
-	background-size: cover;
- 	background-repeat: no-repeat;
-}
-
-
 .parent {
 	display: flex;
 	justify-content: center;
@@ -23,7 +15,7 @@ h1 {
 	background-image: url('images/home.jpg');
 	height: 1000px;
 	background-size: cover;
- 	background-repeat: no-repeat;
+	background-repeat: no-repeat;
 }
 
 .child {
@@ -33,6 +25,12 @@ h1 {
 	transform: translate(-50%, -50%);
 	background-color: white;
 	padding: 25px;
+}
+
+.child > h1 {
+	text-align: center;
+	padding-bottom: 10px;
+	font-family: Arial, Helvetica, sans-serif;
 }
 
 .cell {
