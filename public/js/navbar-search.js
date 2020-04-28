@@ -3,7 +3,6 @@ import { handleErrors, api, addMarkers } from './utils.js';
 document.addEventListener('DOMContentLoaded', async (e) => {
 	// NavBar Selectors
 	const navbarSearchForm = document.querySelector('.navbar-search');
-	const searchButton = document.getElementById('search-btn');
 	const dropDown = document.querySelector('.dropdown');
 	const dropDownToggle = document.querySelector('.dropdown-toggle');
 	const dropDownMenu = document.querySelector('.dropdown-menu');
@@ -26,7 +25,7 @@ document.addEventListener('DOMContentLoaded', async (e) => {
 	dropDownMenu.addEventListener('click', async (event) => {
 		// help me dry up this code please
 		if (event.target === dropDownName) {
-			dropDownToggle.innerHTML = 'Search for: ' + dropDownName.innerHTML;
+			dropDownToggle.innerHTML = 'Search by: ' + dropDownName.innerHTML;
 			searchField.placeholder = '< ' + dropDownName.innerHTML + ' >';
 
 			// when the dropdown for name is selected, hide the category dropdown and display the text search and set the search tag key in session storage to null
@@ -34,10 +33,10 @@ document.addEventListener('DOMContentLoaded', async (e) => {
 			categorySearch.classList.add('hidden');
 			sessionStorage.removeItem('SEARCH_TAG');
 		} else if (event.target === dropDownLocation) {
-			dropDownToggle.innerHTML = 'Search for: ' + dropDownLocation.innerHTML;
+			dropDownToggle.innerHTML = 'Search by: ' + dropDownLocation.innerHTML;
 			searchField.placeholder = dropDownLocation.innerHTML;
 		} else if (event.target === dropDownTag) {
-			dropDownToggle.innerHTML = 'Search for: ' + dropDownTag.innerHTML;
+			dropDownToggle.innerHTML = 'Search by: ' + dropDownTag.innerHTML;
 
 			// when the dropdown for tag is selected, hide the text search and display the category dropdown and set the search value to null
 			searchField.classList.add('hidden');

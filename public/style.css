@@ -8,22 +8,19 @@ h1 {
 	padding: 40px;
 }
 
-.bg-img {
-	/* background-image: url('/images/patrick-tomasso.jpg');
-	height: 500px; */
-	background-size: cover;
- 	background-repeat: no-repeat;
+html,
+body {
+	height: 100%;
 }
-
 
 .parent {
 	display: flex;
 	justify-content: center;
 	align-items: center;
 	background-image: url('images/home.jpg');
-	height: 1000px;
+	height: 100%;
 	background-size: cover;
- 	background-repeat: no-repeat;
+	background-repeat: no-repeat;
 }
 
 .child {
@@ -33,6 +30,12 @@ h1 {
 	transform: translate(-50%, -50%);
 	background-color: white;
 	padding: 25px;
+}
+
+.child > h1 {
+	text-align: center;
+	padding-bottom: 10px;
+	font-family: Arial, Helvetica, sans-serif;
 }
 
 .cell {
@@ -313,11 +316,20 @@ h1 {
 }
 
 #navbarSearch {
-	width: 400px;
+	max-width: 400px;
 }
 
 #category-tags {
-	width: 400px;
+	max-width: 400px;
+}
+
+#home > a {
+	color: darkmagenta;
+	font-weight: bold;
+}
+#home a:before {
+	font-family: 'Font Awesome 5 Free';
+	content: '\f0f4';
 }
 
 /* Business info page */
