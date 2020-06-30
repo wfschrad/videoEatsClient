@@ -2,11 +2,12 @@
 	display: none !important;
 }
 h1 {
-	color: #8B008B;
+	color: #8b008b;
 }
 .home-main {
-	color: #8B008B;
-	font-family: "Segoe UI", Roboto ,"Helvetica Neue",Arial,"Noto Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
+	color: #8b008b;
+	font-family: "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji",
+		"Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
 	text-align: center;
 	font-size: 36px;
 	font-weight: 600;
@@ -19,7 +20,7 @@ h1 {
 }
 #search-btn {
 	color: olivedrab;
-	border-color: olivedrab
+	border-color: olivedrab;
 }
 #search-btn:hover {
 	background-color: #ffc107;
@@ -38,7 +39,7 @@ body {
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	background-image: url('images/home.jpg');
+	background-image: url('/images/home.JPG');
 	height: 100%;
 	background-size: cover;
 	background-repeat: no-repeat;
