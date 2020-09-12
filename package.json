@@ -17,7 +17,7 @@
 		"dotenv": "^8.2.0",
 		"express": "^4.17.1",
 		"localStorage": "^1.0.4",
-		"node-fetch": "^2.6.0",
+		"node-fetch": "^2.6.1",
 		"per-env": "^1.0.2",
 		"pug": "^2.0.4"
 	},
